@@ -4,8 +4,8 @@
 import re
 
 # local
-from model import Board
-import exporters.pdf as pdf
+from olive_gui_master.model import Board
+import olive_gui_master.exporters.pdf as pdf
 
 # todo: use chevron/mustache templating (someday)
 

@@ -2,7 +2,7 @@
 import yaml
 
 # local
-import model
+import olive_gui_master.model as model
 
 # order matters, copied from the end of the binary fancy.exe (v2.9)
 FANCY_PIECES = [

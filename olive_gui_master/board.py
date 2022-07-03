@@ -1,5 +1,5 @@
 import re, copy, json, yaml
-from base import read_resource_file, get_write_dir
+from olive_gui_master.base import read_resource_file, get_write_dir
 
 class Square:
 

@@ -10,10 +10,10 @@ import datetime
 import yaml
 
 # local
-import legacy.popeye
-import legacy.chess
-from board import *
-from base import get_write_dir
+import olive_gui_master.legacy.popeye
+import olive_gui_master.legacy.chess
+from olive_gui_master.board import *
+from olive_gui_master.base import get_write_dir
 
 def myint(string):
     f, s = False, []

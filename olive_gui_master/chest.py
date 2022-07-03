@@ -9,8 +9,8 @@ import re
 from PyQt5 import QtCore, QtWidgets
 
 # local
-import model
-import options
+import olive_gui_master.model
+import olive_gui_master.options
 
 CHESTSTIPULATION = re.compile('^([sh]?)([#=])(\d+)(\.5)?$', re.IGNORECASE)
 

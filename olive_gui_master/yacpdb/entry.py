@@ -6,7 +6,7 @@ import re
 
 from unidecode import unidecode
 
-import board
+import olive_gui_master.board as board
 
 
 class NoDatesSafeLoader(yaml.SafeLoader):

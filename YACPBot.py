@@ -36,13 +36,10 @@
 #   * Consider translating stipulations into English, for the benefit of other servers? (e.g. "White to mate in two" instead of "#2")
 
 ### BUG + QOL LIST:
-#   * y!help is case-sensitive. Should this be the case?
-#		* This is no longer an issue since y! commands will be deprecated.
 #   * Alias e.g. `Directmate` to `#.*` or whatever.
 
 
 import os
-#import ast
 import sys
 import json
 import discord
@@ -68,7 +65,7 @@ slash = SlashCommand(client, sync_commands=True)
 @client.event
 async def on_connect():
     print('YACPBot is online!')
-    game = discord.Game("y!help")
+    game = discord.Game("/help")
     await client.change_presence(status=discord.Status.online, activity=game)
 
 @client.event
@@ -317,16 +314,16 @@ async def prettifyKeywords(keywords):
 
 # takes problem ID and info about y!newest/y!lookup commands, spits out a prettified embed of the problem in the channel where the command was run
 async def prettifiedProblemEmbed(id, channel):
+    print("In prettifiedProblemEmbed")
     id = str(id)
     with urllib.request.urlopen('https://www.yacpdb.org/json.php?entry&id='+id) as url:
         
         # gets data about the problem (TODO: Add fairy condition support, e.g. >>1015 >>258194 for testing)
         data = json.loads(url.read().decode())
-        # print("data = " + str.(data))
         try:
             ash = data.get('ash') + '1'
         except TypeError:
-            await channel.send('Problem ID not found. If you performed y!lookup, please ensure the problem is in the database. If you performed y!newest, something has gone horribly wrong with this bot\'s code.')
+            await channel.send('Problem ID not found. If you performed /lookup, please ensure the problem is in the database. If you performed /newest, something has gone horribly wrong with this bot\'s code.')
 
         # gets authors; if multiple authors, then concatenate into a string with each author on its own line
         authorsArray = data.get('authors')
@@ -375,6 +372,7 @@ async def prettifiedProblemEmbed(id, channel):
         if data.get('keywords'):
             keywordsArray = data.get('keywords')
             badWordsArray = await prettifyKeywords(keywordsArray)
+            print("after badWordsArray")
             if badWordsArray:
                 keywords = 'Bad Keywords: ' + ', '.join("**" + str(x) + "**" for x in badWordsArray) + '\n\n'
             else:
@@ -420,11 +418,21 @@ async def prettifiedProblemEmbed(id, channel):
             twins = ''
         
         # gets solution
+        print("before solution")
         solution = data.get('solution')
+        print(solution)
         # calls parser
-        from p2w.parser import parser
         try:
-            solution = parser.parse(data["solution"], debug=0)
+            try:
+                from olive_gui_master.p2w.parser import parser
+            except Exception as e:
+                print(e)
+            print("L430")
+            try:
+                solution = parser.parse(data["solution"], debug=0)
+            except Exception as e:
+                print(e)
+            print("L432")
             solutionWarning = ""
             if solution == "":
                 solutionWarning = "\n\
@@ -435,11 +443,13 @@ async def prettifiedProblemEmbed(id, channel):
             solutionWarning = "\n\
                 **WARNING! Problem's solution is not in Popeye Output Format! Please edit the entry accordingly.**\
                 \n"
-
+        print("after solution")
         # converts position from algebraic into FEN
         position = data.get("algebraic")
         # FEN = await AlgToFEN(position, channel)
+        print("Before XFEN")
         XFEN = await AlgToXFEN(position, channel)
+        print("after XFEN")
 
         # creates embed with title, author, source, stipulation, and position as image (NOTE: Doesn't really seem possible to increase image size. :C)
         embedVar = discord.Embed(title="YACPDB Problem >>"+id, description=\
@@ -485,7 +495,7 @@ async def prettifiedSolutionEmbed(id, channel):
             await channel.send(embed=embedVar)
             
         except TypeError:
-            await channel.send('Problem ID not found. If you performed y!sol, please ensure the problem is in the database.')
+            await channel.send('Problem ID not found. If you performed /sol, please ensure the problem is in the database.')
 
 # main event loop
 @client.event
@@ -494,14 +504,14 @@ async def prettifiedSolutionEmbed(id, channel):
 async def on_message(message):
 
     # response to y!lookup
-    if message.content.startswith('y!lookup'):
+    if message.content.startswith('/lookup'):
         print(message.content)
 
         
         # turns on typing indicator
         await message.channel.trigger_typing()
 
-        # splits y!lookup messages into command + arguments
+        # splits /lookup messages into command + arguments
         input = message.content
         input = input.split()
         # DEBUG PURPOSES
@@ -510,7 +520,7 @@ async def on_message(message):
         # pass yacpdb ID to other functions (if doesn't exist, throw error)
         try:    
             if len(input) == 1:    
-                await message.channel.send('**WARNING**: No YACPDB problem ID specified. Syntax is `y!lookup [problem id]`.')    
+                await message.channel.send('**WARNING**: No YACPDB problem ID specified. Syntax is `/lookup [problem id]`.')
         # else send prettified problem as an embed    
             else:
                 problemid = str(input[1])
@@ -519,7 +529,7 @@ async def on_message(message):
                     int(str(input[1]))
                     await prettifiedProblemEmbed(problemid, message.channel)
                 except ValueError:
-                    await message.channel.send('**WARNING**: Specified YACPDB problem ID "' + problemid + '" is not an integer! If this is a stipulation, perhaps you mean `y!newest ' + problemid + '` instead?')
+                    await message.channel.send('**WARNING**: Specified YACPDB problem ID "' + problemid + '" is not an integer! If this is a stipulation, perhaps you mean `/newest ' + problemid + '` instead?')
                     print(problemid)
                 except UnboundLocalError:
                     await message.channel.send('**WARNING**: Something went wrong, but I\'m not sure what! Please report this to @edderiofer#0713!')
@@ -531,7 +541,7 @@ async def on_message(message):
             
 
     # response to y!newest
-    if message.content.startswith('y!newest'):
+    if message.content.startswith('/newest'):
         print(message.content)
         
         # turns on typing indicator
@@ -568,7 +578,7 @@ async def on_message(message):
             await prettifiedProblemEmbed(problemid, message.channel)
             
     # response to y!sol
-    if message.content.startswith('y!sol'):
+    if message.content.startswith('/sol'):
         print(message.content)
         
         # turns on typing indicator
@@ -582,29 +592,29 @@ async def on_message(message):
 
         # pass yacpdb ID to other functions (if doesn't exist, throw error)
         if len(input) == 1:
-            await message.channel.send('**WARNING**: No YACPDB problem ID specified. Syntax is `y!sol [problem id]`.')
+            await message.channel.send('**WARNING**: No YACPDB problem ID specified. Syntax is `/sol [problem id]`.')
 
         # else send prettified problem as an embed
         else:
             problemid = str(input[1])
             await prettifiedSolutionEmbed(problemid, message.channel)
     
-    # response to y!search
-    if message.content.startswith('y!search'):
+    # response to /search
+    if message.content.startswith('/search'):
         print(message.content)
         
         # turns on typing indicator
         await message.channel.trigger_typing()
 
-        # splits y!search messages into command + arguments
+        # splits /search messages into command + arguments
         input = message.content
-        query = input.replace("y!search", "").lstrip()
+        query = input.replace("/search", "").lstrip()
         # DEBUG PURPOSES
         print(query)
 
         # pass query to other functions (if doesn't exist, throw error)
         if len(query) == 0:
-            await message.channel.send('**WARNING**: No query specified. Syntax is `y!search [query]` Documentation for the search language may be found HERE: <https://www.yacpdb.org/#static/ql-cheatsheet>.')
+            await message.channel.send('**WARNING**: No query specified. Syntax is `/search [query]` Documentation for the search language may be found HERE: <https://www.yacpdb.org/#static/ql-cheatsheet>.')
 
         # else send prettified results as an embed
         else:
@@ -613,8 +623,8 @@ async def on_message(message):
         
         
     
-    # response to y!help
-    if message.content.startswith('y!help'):
+    # response to /help
+    if message.content.startswith('/help'):
         print(message.content)
 
         # turns on typing indicator
@@ -622,12 +632,12 @@ async def on_message(message):
 
         # creates help embed
         embedVar = discord.Embed(title="YACPBot Help")
-        embedVar.add_field(name="YACPBot Commands", value="`y!newest` or `/newest`: Get the latest problem from YACPDB. \n\
-            `y!newest [stipulation]` or `/newest stip:[stipulation] n:[n]`: Get the [n]th latest problem with stipulation [stipulation]. If `stip` is not specified, it matches any stipulation. If `n` is not specified, it defaults to 0.\n\
-            `y!sol [n]` or `/sol id:[n]`: Gives the solution to YACPDB problem >>[n] in spoilers.\n\
-            `y!lookup [n]` or `/lookup id:[n]`: Displays the [n]th problem in the database.\n\
-            `y!search [search]` or `/search query:[search]`: **NOT FULLY IMPLEMENTED.** Searches for the query [search] on YACPDB and returns the first result. Documentation for the search language may be found HERE: <https://www.yacpdb.org/#static/ql-cheatsheet>.\n\
-            `y!help` or `/help`: Displays these commands.")
+        embedVar.add_field(name="YACPBot Commands", value="`/newest`: Get the latest problem from YACPDB. \n\
+            `/newest stip:[stipulation] n:[n]`: Get the [n]th latest problem with stipulation [stipulation]. If `stip` is not specified, it matches any stipulation. If `n` is not specified, it defaults to 0.\n\
+            `/sol id:[n]`: Gives the solution to YACPDB problem >>[n] in spoilers.\n\
+            `/lookup id:[n]`: Displays the [n]th problem in the database.\n\
+            `/search query:[search]`: **NOT FULLY IMPLEMENTED.** Searches for the query [search] on YACPDB and returns the first result. Documentation for the search language may be found HERE: <https://www.yacpdb.org/#static/ql-cheatsheet>.\n\
+            `/help`: Displays these commands.")
         
         # credits
         embedVar.add_field(name="Credits",value="Bot created by @edderiofer#0713, using discord.py, discord-interactions.py, and Python (many thanks to the volunteers who helped me out when I got stuck while coding this bot).\n\
@@ -660,7 +670,7 @@ async def lookup(ctx, id: int): # Defines a new "context" (ctx) command called "
     try: 
         await prettifiedProblemEmbed(id, ctx)
     except ValueError:
-        await ctx.send('**WARNING**: Specified YACPDB problem ID "' + id + '" is not an integer! If this is a stipulation, perhaps you mean `y!newest ' + id + '` instead?')
+        await ctx.send('**WARNING**: Specified YACPDB problem ID "' + id + '" is not an integer! If this is a stipulation, perhaps you mean `/newest ' + id + '` instead?')
         print(id)
     except UnboundLocalError:
         await ctx.send('**WARNING**: Something went wrong, but I\'m not sure what! Please report this to @edderiofer#0713!')
@@ -691,7 +701,7 @@ async def sol(ctx, id: int): # Defines a new "context" (ctx) command called "sol
     try: 
         await prettifiedSolutionEmbed(id, ctx)
     except ValueError:
-        await ctx.send('**WARNING**: Specified YACPDB problem ID "' + id + '" is not an integer! If this is a stipulation, perhaps you mean `y!newest ' + id + '` instead?')
+        await ctx.send('**WARNING**: Specified YACPDB problem ID "' + id + '" is not an integer! If this is a stipulation, perhaps you mean `/newest ' + id + '` instead?')
         print(id)
     except UnboundLocalError:
         await ctx.send('**WARNING**: Something went wrong, but I\'m not sure what! Please report this to @edderiofer#0713!')
@@ -776,12 +786,12 @@ async def help(ctx): # Defines a new "context" (ctx) command called "help"
 	
     # creates help embed
     embedVar = discord.Embed(title="YACPBot Help")
-    embedVar.add_field(name="YACPBot Commands", value="`y!newest` or `/newest`: Get the latest problem from YACPDB. \n\
-        `y!newest [stipulation]` or `/newest stip:[stipulation] n:[n]`: Get the [n]th latest problem with stipulation [stipulation]. If `stip` is not specified, it matches any stipulation. If `n` is not specified, it defaults to 0.\n\
-        `y!sol [n]` or `/sol id:[n]`: Gives the solution to YACPDB problem >>[n] in spoilers.\n\
-        `y!lookup [n]` or `/lookup id:[n]`: Displays the [n]th problem in the database.\n\
-        `y!search [search]` or `/search query:[search]`: **NOT FULLY IMPLEMENTED.** Searches for the query [search] on YACPDB and returns the first result. Documentation for the search language may be found HERE: <https://www.yacpdb.org/#static/ql-cheatsheet>.\n\
-        `y!help` or `/help`: Displays these commands.")
+    embedVar.add_field(name="YACPBot Commands", value="`/newest`: Get the latest problem from YACPDB. \n\
+        `/newest stip:[stipulation] n:[n]`: Get the [n]th latest problem with stipulation [stipulation]. If `stip` is not specified, it matches any stipulation. If `n` is not specified, it defaults to 0.\n\
+        `/sol id:[n]`: Gives the solution to YACPDB problem >>[n] in spoilers.\n\
+        `/lookup id:[n]`: Displays the [n]th problem in the database.\n\
+        `/search query:[search]`: **NOT FULLY IMPLEMENTED.** Searches for the query [search] on YACPDB and returns the first result. Documentation for the search language may be found HERE: <https://www.yacpdb.org/#static/ql-cheatsheet>.\n\
+        `/help`: Displays these commands.")
         
     # credits
     embedVar.add_field(name="Credits",value="Bot created by @edderiofer#0713, using discord.py, discord-interactions.py, and Python (many thanks to the volunteers who helped me out when I got stuck while coding this bot).\n\

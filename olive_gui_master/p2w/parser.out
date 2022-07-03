@@ -1,0 +1,2655 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> BuildTree
+Rule 1     BuildTree -> Solution
+Rule 2     Solution -> MoveList
+Rule 3     Solution -> TwinList
+Rule 4     Solution -> Comments Solution
+Rule 5     Comments -> COMMENT
+Rule 6     Comments -> COMMENT Comments
+Rule 7     Solution -> <empty>
+Rule 8     TwinList -> Twin
+Rule 9     TwinList -> TwinList Twin
+Rule 10    Twin -> TwinHeader MoveList
+Rule 11    TwinHeader -> TwinBullet
+Rule 12    TwinHeader -> TwinBullet CommandList
+Rule 13    TwinHeader -> TwinHeader Comments
+Rule 14    TwinBullet -> TWIN_ID
+Rule 15    TwinBullet -> PLUS TWIN_ID
+Rule 16    CommandList -> Command
+Rule 17    CommandList -> CommandList Command
+Rule 18    Command -> ROTATE ANGLE
+Rule 19    Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE
+Rule 20    Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE
+Rule 21    Command -> POLISH_TYPE
+Rule 22    Command -> IMITATOR SquareList
+Rule 23    Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE
+Rule 24    Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE
+Rule 25    Command -> DASH LongPieceDecl SQUARE
+Rule 26    Command -> PLUS LongPieceDecl SQUARE
+Rule 27    Command -> LongPieceDecl SQUARE
+Rule 28    LongPieceDecl -> ColorPrefix PIECE_NAME
+Rule 29    LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME
+Rule 30    ColorPrefix -> COLOR_NEUTRAL
+Rule 31    ColorPrefix -> COLOR_WHITE
+Rule 32    ColorPrefix -> COLOR_BLACK
+Rule 33    PieceDecl -> PIECE_NAME
+Rule 34    PieceDecl -> COLOR_NEUTRAL PIECE_NAME
+Rule 35    PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME
+Rule 36    PieceDecl -> FAIRY_PROPERTIES PIECE_NAME
+Rule 37    SquareList -> SQUARE
+Rule 38    SquareList -> SQUARE COMMA SquareList
+Rule 39    SquareList -> SQUARE SquareList
+Rule 40    MoveList -> Move
+Rule 41    MoveList -> Move MoveList
+Rule 42    Move -> BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove
+Rule 43    Move -> MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS
+Rule 44    Move -> MOVE_NUMBER HALF_ELLIPSIS HalfMove
+Rule 45    Move -> MOVE_NUMBER HalfMove THREAT
+Rule 46    Move -> MOVE_NUMBER HalfMove ZUGZWANG
+Rule 47    Move -> MOVE_NUMBER HalfMove HalfMove
+Rule 48    Move -> MOVE_NUMBER HalfMove
+Rule 49    HalfMove -> Ply CheckSign
+Rule 50    HalfMove -> Ply
+Rule 51    HalfMove -> HalfMove ANNOTATION
+Rule 52    HalfMove -> HalfMove Comments
+Rule 53    CheckSign -> PLUS
+Rule 54    CheckSign -> OTHER_CHECK_SIGN
+Rule 55    Ply -> Body
+Rule 56    Ply -> Ply EQUALS ColorPrefix
+Rule 57    Ply -> Ply EQUALS PieceDecl
+Rule 58    Ply -> Ply EQUALS LongPieceDecl
+Rule 59    Ply -> Ply EQUALS
+Rule 60    Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+Rule 61    Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET
+Rule 62    Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+Rule 63    Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET
+Rule 64    Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+Rule 65    Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET
+Rule 66    Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET
+Rule 67    Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET
+Rule 68    Body -> PieceDecl Squares
+Rule 69    Body -> Castling
+Rule 70    Body -> PawnMove
+Rule 71    PawnMove -> Squares
+Rule 72    PawnMove -> PawnMove EN_PASSANT
+Rule 73    Squares -> SQUARE DASH SQUARE
+Rule 74    Squares -> SQUARE ASTERISK SQUARE
+Rule 75    Squares -> SQUARE ASTERISK SQUARE DASH SQUARE
+Rule 76    Castling -> KINGSIDE_CASTLING
+Rule 77    Castling -> QUEENSIDE_CASTLING
+
+Terminals, with rules where they appear
+
+ANGLE                : 18
+ANNOTATION           : 51
+ARROW                : 62 63
+ASTERISK             : 74 75
+BUT                  : 42
+COLOR_BLACK          : 32
+COLOR_NEUTRAL        : 30 34 35
+COLOR_WHITE          : 31
+COMMA                : 38
+COMMENT              : 5 6
+DASH                 : 25 66 73 75
+DOUBLE_POINTED_ARROW : 19 24
+ELLIPSIS             : 43
+EN_PASSANT           : 72
+EQUALS               : 56 57 58 59 60 62 64 65
+FAIRY_PROPERTIES     : 29 35 36
+HALF_ELLIPSIS        : 42 43 44
+IMITATOR             : 22
+IMITATOR_MOVEMENT_OPENING_BRACKET : 67
+KINGSIDE_CASTLING    : 76
+LEFT_SQUARE_BRACKET  : 60 61 62 63 64 65 66
+LONG_ARROW           : 23
+LONG_DOUBLE_ARROW    : 20
+MIRROR               : 19
+MOVE_NUMBER          : 42 43 44 45 46 47 48
+OTHER_CHECK_SIGN     : 54
+PIECE_NAME           : 28 29 33 34 35 36
+PLUS                 : 15 26 53 60 61
+POLISH_TYPE          : 21
+QUEENSIDE_CASTLING   : 77
+RIGHT_SQUARE_BRACKET : 60 61 62 63 64 65 66 67
+ROTATE               : 18
+SHIFT                : 20
+SQUARE               : 19 19 20 20 23 23 24 24 25 26 27 37 38 39 60 61 62 62 63 63 64 65 66 73 73 74 74 75 75 75
+THREAT               : 45
+TWIN_ID              : 14 15
+ZUGZWANG             : 46
+error                : 
+
+Nonterminals, with rules where they appear
+
+Body                 : 55
+BuildTree            : 0
+Castling             : 69
+CheckSign            : 49
+ColorPrefix          : 28 29 56 65
+Command              : 16 17
+CommandList          : 12 17
+Comments             : 4 6 13 52
+HalfMove             : 42 44 45 46 47 47 48 51 52
+LongPieceDecl        : 23 24 24 25 26 27 58 60 61 62 63
+Move                 : 40 41
+MoveList             : 2 10 41
+PawnMove             : 70 72
+PieceDecl            : 57 60 62 64 68
+Ply                  : 49 50 56 57 58 59 60 61 62 63 64 65 66 67
+Solution             : 1 4
+SquareList           : 22 38 39 67
+Squares              : 68 71
+Twin                 : 8 9
+TwinBullet           : 11 12
+TwinHeader           : 10 13
+TwinList             : 3 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . BuildTree
+    (1) BuildTree -> . Solution
+    (2) Solution -> . MoveList
+    (3) Solution -> . TwinList
+    (4) Solution -> . Comments Solution
+    (7) Solution -> .
+    (40) MoveList -> . Move
+    (41) MoveList -> . Move MoveList
+    (8) TwinList -> . Twin
+    (9) TwinList -> . TwinList Twin
+    (5) Comments -> . COMMENT
+    (6) Comments -> . COMMENT Comments
+    (42) Move -> . BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove
+    (43) Move -> . MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS
+    (44) Move -> . MOVE_NUMBER HALF_ELLIPSIS HalfMove
+    (45) Move -> . MOVE_NUMBER HalfMove THREAT
+    (46) Move -> . MOVE_NUMBER HalfMove ZUGZWANG
+    (47) Move -> . MOVE_NUMBER HalfMove HalfMove
+    (48) Move -> . MOVE_NUMBER HalfMove
+    (10) Twin -> . TwinHeader MoveList
+    (11) TwinHeader -> . TwinBullet
+    (12) TwinHeader -> . TwinBullet CommandList
+    (13) TwinHeader -> . TwinHeader Comments
+    (14) TwinBullet -> . TWIN_ID
+    (15) TwinBullet -> . PLUS TWIN_ID
+
+    $end            reduce using rule 7 (Solution -> .)
+    COMMENT         shift and go to state 8
+    BUT             shift and go to state 9
+    MOVE_NUMBER     shift and go to state 10
+    TWIN_ID         shift and go to state 13
+    PLUS            shift and go to state 14
+
+    BuildTree                      shift and go to state 1
+    Solution                       shift and go to state 2
+    MoveList                       shift and go to state 3
+    TwinList                       shift and go to state 4
+    Comments                       shift and go to state 5
+    Move                           shift and go to state 6
+    Twin                           shift and go to state 7
+    TwinHeader                     shift and go to state 11
+    TwinBullet                     shift and go to state 12
+
+state 1
+
+    (0) S' -> BuildTree .
+
+
+
+state 2
+
+    (1) BuildTree -> Solution .
+
+    $end            reduce using rule 1 (BuildTree -> Solution .)
+
+
+state 3
+
+    (2) Solution -> MoveList .
+
+    $end            reduce using rule 2 (Solution -> MoveList .)
+
+
+state 4
+
+    (3) Solution -> TwinList .
+    (9) TwinList -> TwinList . Twin
+    (10) Twin -> . TwinHeader MoveList
+    (11) TwinHeader -> . TwinBullet
+    (12) TwinHeader -> . TwinBullet CommandList
+    (13) TwinHeader -> . TwinHeader Comments
+    (14) TwinBullet -> . TWIN_ID
+    (15) TwinBullet -> . PLUS TWIN_ID
+
+    $end            reduce using rule 3 (Solution -> TwinList .)
+    TWIN_ID         shift and go to state 13
+    PLUS            shift and go to state 14
+
+    Twin                           shift and go to state 15
+    TwinHeader                     shift and go to state 11
+    TwinBullet                     shift and go to state 12
+
+state 5
+
+    (4) Solution -> Comments . Solution
+    (2) Solution -> . MoveList
+    (3) Solution -> . TwinList
+    (4) Solution -> . Comments Solution
+    (7) Solution -> .
+    (40) MoveList -> . Move
+    (41) MoveList -> . Move MoveList
+    (8) TwinList -> . Twin
+    (9) TwinList -> . TwinList Twin
+    (5) Comments -> . COMMENT
+    (6) Comments -> . COMMENT Comments
+    (42) Move -> . BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove
+    (43) Move -> . MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS
+    (44) Move -> . MOVE_NUMBER HALF_ELLIPSIS HalfMove
+    (45) Move -> . MOVE_NUMBER HalfMove THREAT
+    (46) Move -> . MOVE_NUMBER HalfMove ZUGZWANG
+    (47) Move -> . MOVE_NUMBER HalfMove HalfMove
+    (48) Move -> . MOVE_NUMBER HalfMove
+    (10) Twin -> . TwinHeader MoveList
+    (11) TwinHeader -> . TwinBullet
+    (12) TwinHeader -> . TwinBullet CommandList
+    (13) TwinHeader -> . TwinHeader Comments
+    (14) TwinBullet -> . TWIN_ID
+    (15) TwinBullet -> . PLUS TWIN_ID
+
+    $end            reduce using rule 7 (Solution -> .)
+    COMMENT         shift and go to state 8
+    BUT             shift and go to state 9
+    MOVE_NUMBER     shift and go to state 10
+    TWIN_ID         shift and go to state 13
+    PLUS            shift and go to state 14
+
+    Comments                       shift and go to state 5
+    Solution                       shift and go to state 16
+    MoveList                       shift and go to state 3
+    TwinList                       shift and go to state 4
+    Move                           shift and go to state 6
+    Twin                           shift and go to state 7
+    TwinHeader                     shift and go to state 11
+    TwinBullet                     shift and go to state 12
+
+state 6
+
+    (40) MoveList -> Move .
+    (41) MoveList -> Move . MoveList
+    (40) MoveList -> . Move
+    (41) MoveList -> . Move MoveList
+    (42) Move -> . BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove
+    (43) Move -> . MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS
+    (44) Move -> . MOVE_NUMBER HALF_ELLIPSIS HalfMove
+    (45) Move -> . MOVE_NUMBER HalfMove THREAT
+    (46) Move -> . MOVE_NUMBER HalfMove ZUGZWANG
+    (47) Move -> . MOVE_NUMBER HalfMove HalfMove
+    (48) Move -> . MOVE_NUMBER HalfMove
+
+    $end            reduce using rule 40 (MoveList -> Move .)
+    TWIN_ID         reduce using rule 40 (MoveList -> Move .)
+    PLUS            reduce using rule 40 (MoveList -> Move .)
+    BUT             shift and go to state 9
+    MOVE_NUMBER     shift and go to state 10
+
+    Move                           shift and go to state 6
+    MoveList                       shift and go to state 17
+
+state 7
+
+    (8) TwinList -> Twin .
+
+    TWIN_ID         reduce using rule 8 (TwinList -> Twin .)
+    PLUS            reduce using rule 8 (TwinList -> Twin .)
+    $end            reduce using rule 8 (TwinList -> Twin .)
+
+
+state 8
+
+    (5) Comments -> COMMENT .
+    (6) Comments -> COMMENT . Comments
+    (5) Comments -> . COMMENT
+    (6) Comments -> . COMMENT Comments
+
+  ! shift/reduce conflict for COMMENT resolved as shift
+    BUT             reduce using rule 5 (Comments -> COMMENT .)
+    MOVE_NUMBER     reduce using rule 5 (Comments -> COMMENT .)
+    TWIN_ID         reduce using rule 5 (Comments -> COMMENT .)
+    PLUS            reduce using rule 5 (Comments -> COMMENT .)
+    $end            reduce using rule 5 (Comments -> COMMENT .)
+    THREAT          reduce using rule 5 (Comments -> COMMENT .)
+    ZUGZWANG        reduce using rule 5 (Comments -> COMMENT .)
+    ANNOTATION      reduce using rule 5 (Comments -> COMMENT .)
+    PIECE_NAME      reduce using rule 5 (Comments -> COMMENT .)
+    COLOR_NEUTRAL   reduce using rule 5 (Comments -> COMMENT .)
+    FAIRY_PROPERTIES reduce using rule 5 (Comments -> COMMENT .)
+    KINGSIDE_CASTLING reduce using rule 5 (Comments -> COMMENT .)
+    QUEENSIDE_CASTLING reduce using rule 5 (Comments -> COMMENT .)
+    SQUARE          reduce using rule 5 (Comments -> COMMENT .)
+    COMMENT         shift and go to state 8
+
+  ! COMMENT         [ reduce using rule 5 (Comments -> COMMENT .) ]
+
+    Comments                       shift and go to state 18
+
+state 9
+
+    (42) Move -> BUT . MOVE_NUMBER HALF_ELLIPSIS HalfMove
+
+    MOVE_NUMBER     shift and go to state 19
+
+
+state 10
+
+    (43) Move -> MOVE_NUMBER . HALF_ELLIPSIS ELLIPSIS
+    (44) Move -> MOVE_NUMBER . HALF_ELLIPSIS HalfMove
+    (45) Move -> MOVE_NUMBER . HalfMove THREAT
+    (46) Move -> MOVE_NUMBER . HalfMove ZUGZWANG
+    (47) Move -> MOVE_NUMBER . HalfMove HalfMove
+    (48) Move -> MOVE_NUMBER . HalfMove
+    (49) HalfMove -> . Ply CheckSign
+    (50) HalfMove -> . Ply
+    (51) HalfMove -> . HalfMove ANNOTATION
+    (52) HalfMove -> . HalfMove Comments
+    (55) Ply -> . Body
+    (56) Ply -> . Ply EQUALS ColorPrefix
+    (57) Ply -> . Ply EQUALS PieceDecl
+    (58) Ply -> . Ply EQUALS LongPieceDecl
+    (59) Ply -> . Ply EQUALS
+    (60) Ply -> . Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (61) Ply -> . Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET
+    (62) Ply -> . Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (63) Ply -> . Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET
+    (64) Ply -> . Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (65) Ply -> . Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET
+    (66) Ply -> . Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET
+    (67) Ply -> . Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET
+    (68) Body -> . PieceDecl Squares
+    (69) Body -> . Castling
+    (70) Body -> . PawnMove
+    (33) PieceDecl -> . PIECE_NAME
+    (34) PieceDecl -> . COLOR_NEUTRAL PIECE_NAME
+    (35) PieceDecl -> . COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME
+    (36) PieceDecl -> . FAIRY_PROPERTIES PIECE_NAME
+    (76) Castling -> . KINGSIDE_CASTLING
+    (77) Castling -> . QUEENSIDE_CASTLING
+    (71) PawnMove -> . Squares
+    (72) PawnMove -> . PawnMove EN_PASSANT
+    (73) Squares -> . SQUARE DASH SQUARE
+    (74) Squares -> . SQUARE ASTERISK SQUARE
+    (75) Squares -> . SQUARE ASTERISK SQUARE DASH SQUARE
+
+    HALF_ELLIPSIS   shift and go to state 20
+    PIECE_NAME      shift and go to state 29
+    COLOR_NEUTRAL   shift and go to state 30
+    FAIRY_PROPERTIES shift and go to state 31
+    KINGSIDE_CASTLING shift and go to state 32
+    QUEENSIDE_CASTLING shift and go to state 33
+    SQUARE          shift and go to state 25
+
+    HalfMove                       shift and go to state 21
+    Ply                            shift and go to state 22
+    Body                           shift and go to state 23
+    PieceDecl                      shift and go to state 24
+    Squares                        shift and go to state 26
+    Castling                       shift and go to state 27
+    PawnMove                       shift and go to state 28
+
+state 11
+
+    (10) Twin -> TwinHeader . MoveList
+    (13) TwinHeader -> TwinHeader . Comments
+    (40) MoveList -> . Move
+    (41) MoveList -> . Move MoveList
+    (5) Comments -> . COMMENT
+    (6) Comments -> . COMMENT Comments
+    (42) Move -> . BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove
+    (43) Move -> . MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS
+    (44) Move -> . MOVE_NUMBER HALF_ELLIPSIS HalfMove
+    (45) Move -> . MOVE_NUMBER HalfMove THREAT
+    (46) Move -> . MOVE_NUMBER HalfMove ZUGZWANG
+    (47) Move -> . MOVE_NUMBER HalfMove HalfMove
+    (48) Move -> . MOVE_NUMBER HalfMove
+
+    COMMENT         shift and go to state 8
+    BUT             shift and go to state 9
+    MOVE_NUMBER     shift and go to state 10
+
+    MoveList                       shift and go to state 34
+    Comments                       shift and go to state 35
+    Move                           shift and go to state 6
+
+state 12
+
+    (11) TwinHeader -> TwinBullet .
+    (12) TwinHeader -> TwinBullet . CommandList
+    (16) CommandList -> . Command
+    (17) CommandList -> . CommandList Command
+    (18) Command -> . ROTATE ANGLE
+    (19) Command -> . MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE
+    (20) Command -> . SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE
+    (21) Command -> . POLISH_TYPE
+    (22) Command -> . IMITATOR SquareList
+    (23) Command -> . LongPieceDecl SQUARE LONG_ARROW SQUARE
+    (24) Command -> . LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE
+    (25) Command -> . DASH LongPieceDecl SQUARE
+    (26) Command -> . PLUS LongPieceDecl SQUARE
+    (27) Command -> . LongPieceDecl SQUARE
+    (28) LongPieceDecl -> . ColorPrefix PIECE_NAME
+    (29) LongPieceDecl -> . ColorPrefix FAIRY_PROPERTIES PIECE_NAME
+    (30) ColorPrefix -> . COLOR_NEUTRAL
+    (31) ColorPrefix -> . COLOR_WHITE
+    (32) ColorPrefix -> . COLOR_BLACK
+
+    COMMENT         reduce using rule 11 (TwinHeader -> TwinBullet .)
+    BUT             reduce using rule 11 (TwinHeader -> TwinBullet .)
+    MOVE_NUMBER     reduce using rule 11 (TwinHeader -> TwinBullet .)
+    ROTATE          shift and go to state 38
+    MIRROR          shift and go to state 39
+    SHIFT           shift and go to state 40
+    POLISH_TYPE     shift and go to state 41
+    IMITATOR        shift and go to state 42
+    DASH            shift and go to state 44
+    PLUS            shift and go to state 45
+    COLOR_NEUTRAL   shift and go to state 47
+    COLOR_WHITE     shift and go to state 48
+    COLOR_BLACK     shift and go to state 49
+
+    CommandList                    shift and go to state 36
+    Command                        shift and go to state 37
+    LongPieceDecl                  shift and go to state 43
+    ColorPrefix                    shift and go to state 46
+
+state 13
+
+    (14) TwinBullet -> TWIN_ID .
+
+    ROTATE          reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    MIRROR          reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    SHIFT           reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    POLISH_TYPE     reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    IMITATOR        reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    DASH            reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    PLUS            reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    COLOR_NEUTRAL   reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    COLOR_WHITE     reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    COLOR_BLACK     reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    COMMENT         reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    BUT             reduce using rule 14 (TwinBullet -> TWIN_ID .)
+    MOVE_NUMBER     reduce using rule 14 (TwinBullet -> TWIN_ID .)
+
+
+state 14
+
+    (15) TwinBullet -> PLUS . TWIN_ID
+
+    TWIN_ID         shift and go to state 50
+
+
+state 15
+
+    (9) TwinList -> TwinList Twin .
+
+    TWIN_ID         reduce using rule 9 (TwinList -> TwinList Twin .)
+    PLUS            reduce using rule 9 (TwinList -> TwinList Twin .)
+    $end            reduce using rule 9 (TwinList -> TwinList Twin .)
+
+
+state 16
+
+    (4) Solution -> Comments Solution .
+
+    $end            reduce using rule 4 (Solution -> Comments Solution .)
+
+
+state 17
+
+    (41) MoveList -> Move MoveList .
+
+    $end            reduce using rule 41 (MoveList -> Move MoveList .)
+    TWIN_ID         reduce using rule 41 (MoveList -> Move MoveList .)
+    PLUS            reduce using rule 41 (MoveList -> Move MoveList .)
+
+
+state 18
+
+    (6) Comments -> COMMENT Comments .
+
+    COMMENT         reduce using rule 6 (Comments -> COMMENT Comments .)
+    BUT             reduce using rule 6 (Comments -> COMMENT Comments .)
+    MOVE_NUMBER     reduce using rule 6 (Comments -> COMMENT Comments .)
+    TWIN_ID         reduce using rule 6 (Comments -> COMMENT Comments .)
+    PLUS            reduce using rule 6 (Comments -> COMMENT Comments .)
+    $end            reduce using rule 6 (Comments -> COMMENT Comments .)
+    THREAT          reduce using rule 6 (Comments -> COMMENT Comments .)
+    ZUGZWANG        reduce using rule 6 (Comments -> COMMENT Comments .)
+    ANNOTATION      reduce using rule 6 (Comments -> COMMENT Comments .)
+    PIECE_NAME      reduce using rule 6 (Comments -> COMMENT Comments .)
+    COLOR_NEUTRAL   reduce using rule 6 (Comments -> COMMENT Comments .)
+    FAIRY_PROPERTIES reduce using rule 6 (Comments -> COMMENT Comments .)
+    KINGSIDE_CASTLING reduce using rule 6 (Comments -> COMMENT Comments .)
+    QUEENSIDE_CASTLING reduce using rule 6 (Comments -> COMMENT Comments .)
+    SQUARE          reduce using rule 6 (Comments -> COMMENT Comments .)
+
+
+state 19
+
+    (42) Move -> BUT MOVE_NUMBER . HALF_ELLIPSIS HalfMove
+
+    HALF_ELLIPSIS   shift and go to state 51
+
+
+state 20
+
+    (43) Move -> MOVE_NUMBER HALF_ELLIPSIS . ELLIPSIS
+    (44) Move -> MOVE_NUMBER HALF_ELLIPSIS . HalfMove
+    (49) HalfMove -> . Ply CheckSign
+    (50) HalfMove -> . Ply
+    (51) HalfMove -> . HalfMove ANNOTATION
+    (52) HalfMove -> . HalfMove Comments
+    (55) Ply -> . Body
+    (56) Ply -> . Ply EQUALS ColorPrefix
+    (57) Ply -> . Ply EQUALS PieceDecl
+    (58) Ply -> . Ply EQUALS LongPieceDecl
+    (59) Ply -> . Ply EQUALS
+    (60) Ply -> . Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (61) Ply -> . Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET
+    (62) Ply -> . Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (63) Ply -> . Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET
+    (64) Ply -> . Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (65) Ply -> . Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET
+    (66) Ply -> . Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET
+    (67) Ply -> . Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET
+    (68) Body -> . PieceDecl Squares
+    (69) Body -> . Castling
+    (70) Body -> . PawnMove
+    (33) PieceDecl -> . PIECE_NAME
+    (34) PieceDecl -> . COLOR_NEUTRAL PIECE_NAME
+    (35) PieceDecl -> . COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME
+    (36) PieceDecl -> . FAIRY_PROPERTIES PIECE_NAME
+    (76) Castling -> . KINGSIDE_CASTLING
+    (77) Castling -> . QUEENSIDE_CASTLING
+    (71) PawnMove -> . Squares
+    (72) PawnMove -> . PawnMove EN_PASSANT
+    (73) Squares -> . SQUARE DASH SQUARE
+    (74) Squares -> . SQUARE ASTERISK SQUARE
+    (75) Squares -> . SQUARE ASTERISK SQUARE DASH SQUARE
+
+    ELLIPSIS        shift and go to state 52
+    PIECE_NAME      shift and go to state 29
+    COLOR_NEUTRAL   shift and go to state 30
+    FAIRY_PROPERTIES shift and go to state 31
+    KINGSIDE_CASTLING shift and go to state 32
+    QUEENSIDE_CASTLING shift and go to state 33
+    SQUARE          shift and go to state 25
+
+    HalfMove                       shift and go to state 53
+    Ply                            shift and go to state 22
+    Body                           shift and go to state 23
+    PieceDecl                      shift and go to state 24
+    Squares                        shift and go to state 26
+    Castling                       shift and go to state 27
+    PawnMove                       shift and go to state 28
+
+state 21
+
+    (45) Move -> MOVE_NUMBER HalfMove . THREAT
+    (46) Move -> MOVE_NUMBER HalfMove . ZUGZWANG
+    (47) Move -> MOVE_NUMBER HalfMove . HalfMove
+    (48) Move -> MOVE_NUMBER HalfMove .
+    (51) HalfMove -> HalfMove . ANNOTATION
+    (52) HalfMove -> HalfMove . Comments
+    (49) HalfMove -> . Ply CheckSign
+    (50) HalfMove -> . Ply
+    (51) HalfMove -> . HalfMove ANNOTATION
+    (52) HalfMove -> . HalfMove Comments
+    (5) Comments -> . COMMENT
+    (6) Comments -> . COMMENT Comments
+    (55) Ply -> . Body
+    (56) Ply -> . Ply EQUALS ColorPrefix
+    (57) Ply -> . Ply EQUALS PieceDecl
+    (58) Ply -> . Ply EQUALS LongPieceDecl
+    (59) Ply -> . Ply EQUALS
+    (60) Ply -> . Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (61) Ply -> . Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET
+    (62) Ply -> . Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (63) Ply -> . Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET
+    (64) Ply -> . Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (65) Ply -> . Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET
+    (66) Ply -> . Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET
+    (67) Ply -> . Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET
+    (68) Body -> . PieceDecl Squares
+    (69) Body -> . Castling
+    (70) Body -> . PawnMove
+    (33) PieceDecl -> . PIECE_NAME
+    (34) PieceDecl -> . COLOR_NEUTRAL PIECE_NAME
+    (35) PieceDecl -> . COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME
+    (36) PieceDecl -> . FAIRY_PROPERTIES PIECE_NAME
+    (76) Castling -> . KINGSIDE_CASTLING
+    (77) Castling -> . QUEENSIDE_CASTLING
+    (71) PawnMove -> . Squares
+    (72) PawnMove -> . PawnMove EN_PASSANT
+    (73) Squares -> . SQUARE DASH SQUARE
+    (74) Squares -> . SQUARE ASTERISK SQUARE
+    (75) Squares -> . SQUARE ASTERISK SQUARE DASH SQUARE
+
+    THREAT          shift and go to state 55
+    ZUGZWANG        shift and go to state 56
+    BUT             reduce using rule 48 (Move -> MOVE_NUMBER HalfMove .)
+    MOVE_NUMBER     reduce using rule 48 (Move -> MOVE_NUMBER HalfMove .)
+    $end            reduce using rule 48 (Move -> MOVE_NUMBER HalfMove .)
+    TWIN_ID         reduce using rule 48 (Move -> MOVE_NUMBER HalfMove .)
+    PLUS            reduce using rule 48 (Move -> MOVE_NUMBER HalfMove .)
+    ANNOTATION      shift and go to state 57
+    COMMENT         shift and go to state 8
+    PIECE_NAME      shift and go to state 29
+    COLOR_NEUTRAL   shift and go to state 30
+    FAIRY_PROPERTIES shift and go to state 31
+    KINGSIDE_CASTLING shift and go to state 32
+    QUEENSIDE_CASTLING shift and go to state 33
+    SQUARE          shift and go to state 25
+
+    HalfMove                       shift and go to state 54
+    Comments                       shift and go to state 58
+    Ply                            shift and go to state 22
+    Body                           shift and go to state 23
+    PieceDecl                      shift and go to state 24
+    Squares                        shift and go to state 26
+    Castling                       shift and go to state 27
+    PawnMove                       shift and go to state 28
+
+state 22
+
+    (49) HalfMove -> Ply . CheckSign
+    (50) HalfMove -> Ply .
+    (56) Ply -> Ply . EQUALS ColorPrefix
+    (57) Ply -> Ply . EQUALS PieceDecl
+    (58) Ply -> Ply . EQUALS LongPieceDecl
+    (59) Ply -> Ply . EQUALS
+    (60) Ply -> Ply . LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (61) Ply -> Ply . LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET
+    (62) Ply -> Ply . LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (63) Ply -> Ply . LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET
+    (64) Ply -> Ply . LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (65) Ply -> Ply . LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET
+    (66) Ply -> Ply . LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET
+    (67) Ply -> Ply . IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET
+    (53) CheckSign -> . PLUS
+    (54) CheckSign -> . OTHER_CHECK_SIGN
+
+  ! shift/reduce conflict for PLUS resolved as shift
+    THREAT          reduce using rule 50 (HalfMove -> Ply .)
+    ZUGZWANG        reduce using rule 50 (HalfMove -> Ply .)
+    ANNOTATION      reduce using rule 50 (HalfMove -> Ply .)
+    COMMENT         reduce using rule 50 (HalfMove -> Ply .)
+    PIECE_NAME      reduce using rule 50 (HalfMove -> Ply .)
+    COLOR_NEUTRAL   reduce using rule 50 (HalfMove -> Ply .)
+    FAIRY_PROPERTIES reduce using rule 50 (HalfMove -> Ply .)
+    KINGSIDE_CASTLING reduce using rule 50 (HalfMove -> Ply .)
+    QUEENSIDE_CASTLING reduce using rule 50 (HalfMove -> Ply .)
+    SQUARE          reduce using rule 50 (HalfMove -> Ply .)
+    BUT             reduce using rule 50 (HalfMove -> Ply .)
+    MOVE_NUMBER     reduce using rule 50 (HalfMove -> Ply .)
+    $end            reduce using rule 50 (HalfMove -> Ply .)
+    TWIN_ID         reduce using rule 50 (HalfMove -> Ply .)
+    EQUALS          shift and go to state 60
+    LEFT_SQUARE_BRACKET shift and go to state 61
+    IMITATOR_MOVEMENT_OPENING_BRACKET shift and go to state 63
+    PLUS            shift and go to state 62
+    OTHER_CHECK_SIGN shift and go to state 64
+
+  ! PLUS            [ reduce using rule 50 (HalfMove -> Ply .) ]
+
+    CheckSign                      shift and go to state 59
+
+state 23
+
+    (55) Ply -> Body .
+
+    EQUALS          reduce using rule 55 (Ply -> Body .)
+    LEFT_SQUARE_BRACKET reduce using rule 55 (Ply -> Body .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 55 (Ply -> Body .)
+    PLUS            reduce using rule 55 (Ply -> Body .)
+    OTHER_CHECK_SIGN reduce using rule 55 (Ply -> Body .)
+    THREAT          reduce using rule 55 (Ply -> Body .)
+    ZUGZWANG        reduce using rule 55 (Ply -> Body .)
+    ANNOTATION      reduce using rule 55 (Ply -> Body .)
+    COMMENT         reduce using rule 55 (Ply -> Body .)
+    PIECE_NAME      reduce using rule 55 (Ply -> Body .)
+    COLOR_NEUTRAL   reduce using rule 55 (Ply -> Body .)
+    FAIRY_PROPERTIES reduce using rule 55 (Ply -> Body .)
+    KINGSIDE_CASTLING reduce using rule 55 (Ply -> Body .)
+    QUEENSIDE_CASTLING reduce using rule 55 (Ply -> Body .)
+    SQUARE          reduce using rule 55 (Ply -> Body .)
+    BUT             reduce using rule 55 (Ply -> Body .)
+    MOVE_NUMBER     reduce using rule 55 (Ply -> Body .)
+    $end            reduce using rule 55 (Ply -> Body .)
+    TWIN_ID         reduce using rule 55 (Ply -> Body .)
+
+
+state 24
+
+    (68) Body -> PieceDecl . Squares
+    (73) Squares -> . SQUARE DASH SQUARE
+    (74) Squares -> . SQUARE ASTERISK SQUARE
+    (75) Squares -> . SQUARE ASTERISK SQUARE DASH SQUARE
+
+    SQUARE          shift and go to state 25
+
+    Squares                        shift and go to state 65
+
+state 25
+
+    (73) Squares -> SQUARE . DASH SQUARE
+    (74) Squares -> SQUARE . ASTERISK SQUARE
+    (75) Squares -> SQUARE . ASTERISK SQUARE DASH SQUARE
+
+    DASH            shift and go to state 66
+    ASTERISK        shift and go to state 67
+
+
+state 26
+
+    (71) PawnMove -> Squares .
+
+    EN_PASSANT      reduce using rule 71 (PawnMove -> Squares .)
+    EQUALS          reduce using rule 71 (PawnMove -> Squares .)
+    LEFT_SQUARE_BRACKET reduce using rule 71 (PawnMove -> Squares .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 71 (PawnMove -> Squares .)
+    PLUS            reduce using rule 71 (PawnMove -> Squares .)
+    OTHER_CHECK_SIGN reduce using rule 71 (PawnMove -> Squares .)
+    THREAT          reduce using rule 71 (PawnMove -> Squares .)
+    ZUGZWANG        reduce using rule 71 (PawnMove -> Squares .)
+    ANNOTATION      reduce using rule 71 (PawnMove -> Squares .)
+    COMMENT         reduce using rule 71 (PawnMove -> Squares .)
+    PIECE_NAME      reduce using rule 71 (PawnMove -> Squares .)
+    COLOR_NEUTRAL   reduce using rule 71 (PawnMove -> Squares .)
+    FAIRY_PROPERTIES reduce using rule 71 (PawnMove -> Squares .)
+    KINGSIDE_CASTLING reduce using rule 71 (PawnMove -> Squares .)
+    QUEENSIDE_CASTLING reduce using rule 71 (PawnMove -> Squares .)
+    SQUARE          reduce using rule 71 (PawnMove -> Squares .)
+    BUT             reduce using rule 71 (PawnMove -> Squares .)
+    MOVE_NUMBER     reduce using rule 71 (PawnMove -> Squares .)
+    $end            reduce using rule 71 (PawnMove -> Squares .)
+    TWIN_ID         reduce using rule 71 (PawnMove -> Squares .)
+
+
+state 27
+
+    (69) Body -> Castling .
+
+    EQUALS          reduce using rule 69 (Body -> Castling .)
+    LEFT_SQUARE_BRACKET reduce using rule 69 (Body -> Castling .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 69 (Body -> Castling .)
+    PLUS            reduce using rule 69 (Body -> Castling .)
+    OTHER_CHECK_SIGN reduce using rule 69 (Body -> Castling .)
+    THREAT          reduce using rule 69 (Body -> Castling .)
+    ZUGZWANG        reduce using rule 69 (Body -> Castling .)
+    ANNOTATION      reduce using rule 69 (Body -> Castling .)
+    COMMENT         reduce using rule 69 (Body -> Castling .)
+    PIECE_NAME      reduce using rule 69 (Body -> Castling .)
+    COLOR_NEUTRAL   reduce using rule 69 (Body -> Castling .)
+    FAIRY_PROPERTIES reduce using rule 69 (Body -> Castling .)
+    KINGSIDE_CASTLING reduce using rule 69 (Body -> Castling .)
+    QUEENSIDE_CASTLING reduce using rule 69 (Body -> Castling .)
+    SQUARE          reduce using rule 69 (Body -> Castling .)
+    BUT             reduce using rule 69 (Body -> Castling .)
+    MOVE_NUMBER     reduce using rule 69 (Body -> Castling .)
+    $end            reduce using rule 69 (Body -> Castling .)
+    TWIN_ID         reduce using rule 69 (Body -> Castling .)
+
+
+state 28
+
+    (70) Body -> PawnMove .
+    (72) PawnMove -> PawnMove . EN_PASSANT
+
+    EQUALS          reduce using rule 70 (Body -> PawnMove .)
+    LEFT_SQUARE_BRACKET reduce using rule 70 (Body -> PawnMove .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 70 (Body -> PawnMove .)
+    PLUS            reduce using rule 70 (Body -> PawnMove .)
+    OTHER_CHECK_SIGN reduce using rule 70 (Body -> PawnMove .)
+    THREAT          reduce using rule 70 (Body -> PawnMove .)
+    ZUGZWANG        reduce using rule 70 (Body -> PawnMove .)
+    ANNOTATION      reduce using rule 70 (Body -> PawnMove .)
+    COMMENT         reduce using rule 70 (Body -> PawnMove .)
+    PIECE_NAME      reduce using rule 70 (Body -> PawnMove .)
+    COLOR_NEUTRAL   reduce using rule 70 (Body -> PawnMove .)
+    FAIRY_PROPERTIES reduce using rule 70 (Body -> PawnMove .)
+    KINGSIDE_CASTLING reduce using rule 70 (Body -> PawnMove .)
+    QUEENSIDE_CASTLING reduce using rule 70 (Body -> PawnMove .)
+    SQUARE          reduce using rule 70 (Body -> PawnMove .)
+    BUT             reduce using rule 70 (Body -> PawnMove .)
+    MOVE_NUMBER     reduce using rule 70 (Body -> PawnMove .)
+    $end            reduce using rule 70 (Body -> PawnMove .)
+    TWIN_ID         reduce using rule 70 (Body -> PawnMove .)
+    EN_PASSANT      shift and go to state 68
+
+
+state 29
+
+    (33) PieceDecl -> PIECE_NAME .
+
+    SQUARE          reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    EQUALS          reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    LEFT_SQUARE_BRACKET reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    PLUS            reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    OTHER_CHECK_SIGN reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    THREAT          reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    ZUGZWANG        reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    ANNOTATION      reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    COMMENT         reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    PIECE_NAME      reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    COLOR_NEUTRAL   reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    FAIRY_PROPERTIES reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    KINGSIDE_CASTLING reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    QUEENSIDE_CASTLING reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    BUT             reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    MOVE_NUMBER     reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    $end            reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    TWIN_ID         reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+    RIGHT_SQUARE_BRACKET reduce using rule 33 (PieceDecl -> PIECE_NAME .)
+
+
+state 30
+
+    (34) PieceDecl -> COLOR_NEUTRAL . PIECE_NAME
+    (35) PieceDecl -> COLOR_NEUTRAL . FAIRY_PROPERTIES PIECE_NAME
+
+    PIECE_NAME      shift and go to state 69
+    FAIRY_PROPERTIES shift and go to state 70
+
+
+state 31
+
+    (36) PieceDecl -> FAIRY_PROPERTIES . PIECE_NAME
+
+    PIECE_NAME      shift and go to state 71
+
+
+state 32
+
+    (76) Castling -> KINGSIDE_CASTLING .
+
+    EQUALS          reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    LEFT_SQUARE_BRACKET reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    PLUS            reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    OTHER_CHECK_SIGN reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    THREAT          reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    ZUGZWANG        reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    ANNOTATION      reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    COMMENT         reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    PIECE_NAME      reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    COLOR_NEUTRAL   reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    FAIRY_PROPERTIES reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    KINGSIDE_CASTLING reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    QUEENSIDE_CASTLING reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    SQUARE          reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    BUT             reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    MOVE_NUMBER     reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    $end            reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+    TWIN_ID         reduce using rule 76 (Castling -> KINGSIDE_CASTLING .)
+
+
+state 33
+
+    (77) Castling -> QUEENSIDE_CASTLING .
+
+    EQUALS          reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    LEFT_SQUARE_BRACKET reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    PLUS            reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    OTHER_CHECK_SIGN reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    THREAT          reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    ZUGZWANG        reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    ANNOTATION      reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    COMMENT         reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    PIECE_NAME      reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    COLOR_NEUTRAL   reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    FAIRY_PROPERTIES reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    KINGSIDE_CASTLING reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    QUEENSIDE_CASTLING reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    SQUARE          reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    BUT             reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    MOVE_NUMBER     reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    $end            reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+    TWIN_ID         reduce using rule 77 (Castling -> QUEENSIDE_CASTLING .)
+
+
+state 34
+
+    (10) Twin -> TwinHeader MoveList .
+
+    TWIN_ID         reduce using rule 10 (Twin -> TwinHeader MoveList .)
+    PLUS            reduce using rule 10 (Twin -> TwinHeader MoveList .)
+    $end            reduce using rule 10 (Twin -> TwinHeader MoveList .)
+
+
+state 35
+
+    (13) TwinHeader -> TwinHeader Comments .
+
+    COMMENT         reduce using rule 13 (TwinHeader -> TwinHeader Comments .)
+    BUT             reduce using rule 13 (TwinHeader -> TwinHeader Comments .)
+    MOVE_NUMBER     reduce using rule 13 (TwinHeader -> TwinHeader Comments .)
+
+
+state 36
+
+    (12) TwinHeader -> TwinBullet CommandList .
+    (17) CommandList -> CommandList . Command
+    (18) Command -> . ROTATE ANGLE
+    (19) Command -> . MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE
+    (20) Command -> . SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE
+    (21) Command -> . POLISH_TYPE
+    (22) Command -> . IMITATOR SquareList
+    (23) Command -> . LongPieceDecl SQUARE LONG_ARROW SQUARE
+    (24) Command -> . LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE
+    (25) Command -> . DASH LongPieceDecl SQUARE
+    (26) Command -> . PLUS LongPieceDecl SQUARE
+    (27) Command -> . LongPieceDecl SQUARE
+    (28) LongPieceDecl -> . ColorPrefix PIECE_NAME
+    (29) LongPieceDecl -> . ColorPrefix FAIRY_PROPERTIES PIECE_NAME
+    (30) ColorPrefix -> . COLOR_NEUTRAL
+    (31) ColorPrefix -> . COLOR_WHITE
+    (32) ColorPrefix -> . COLOR_BLACK
+
+    COMMENT         reduce using rule 12 (TwinHeader -> TwinBullet CommandList .)
+    BUT             reduce using rule 12 (TwinHeader -> TwinBullet CommandList .)
+    MOVE_NUMBER     reduce using rule 12 (TwinHeader -> TwinBullet CommandList .)
+    ROTATE          shift and go to state 38
+    MIRROR          shift and go to state 39
+    SHIFT           shift and go to state 40
+    POLISH_TYPE     shift and go to state 41
+    IMITATOR        shift and go to state 42
+    DASH            shift and go to state 44
+    PLUS            shift and go to state 45
+    COLOR_NEUTRAL   shift and go to state 47
+    COLOR_WHITE     shift and go to state 48
+    COLOR_BLACK     shift and go to state 49
+
+    Command                        shift and go to state 72
+    LongPieceDecl                  shift and go to state 43
+    ColorPrefix                    shift and go to state 46
+
+state 37
+
+    (16) CommandList -> Command .
+
+    ROTATE          reduce using rule 16 (CommandList -> Command .)
+    MIRROR          reduce using rule 16 (CommandList -> Command .)
+    SHIFT           reduce using rule 16 (CommandList -> Command .)
+    POLISH_TYPE     reduce using rule 16 (CommandList -> Command .)
+    IMITATOR        reduce using rule 16 (CommandList -> Command .)
+    DASH            reduce using rule 16 (CommandList -> Command .)
+    PLUS            reduce using rule 16 (CommandList -> Command .)
+    COLOR_NEUTRAL   reduce using rule 16 (CommandList -> Command .)
+    COLOR_WHITE     reduce using rule 16 (CommandList -> Command .)
+    COLOR_BLACK     reduce using rule 16 (CommandList -> Command .)
+    COMMENT         reduce using rule 16 (CommandList -> Command .)
+    BUT             reduce using rule 16 (CommandList -> Command .)
+    MOVE_NUMBER     reduce using rule 16 (CommandList -> Command .)
+
+
+state 38
+
+    (18) Command -> ROTATE . ANGLE
+
+    ANGLE           shift and go to state 73
+
+
+state 39
+
+    (19) Command -> MIRROR . SQUARE DOUBLE_POINTED_ARROW SQUARE
+
+    SQUARE          shift and go to state 74
+
+
+state 40
+
+    (20) Command -> SHIFT . SQUARE LONG_DOUBLE_ARROW SQUARE
+
+    SQUARE          shift and go to state 75
+
+
+state 41
+
+    (21) Command -> POLISH_TYPE .
+
+    ROTATE          reduce using rule 21 (Command -> POLISH_TYPE .)
+    MIRROR          reduce using rule 21 (Command -> POLISH_TYPE .)
+    SHIFT           reduce using rule 21 (Command -> POLISH_TYPE .)
+    POLISH_TYPE     reduce using rule 21 (Command -> POLISH_TYPE .)
+    IMITATOR        reduce using rule 21 (Command -> POLISH_TYPE .)
+    DASH            reduce using rule 21 (Command -> POLISH_TYPE .)
+    PLUS            reduce using rule 21 (Command -> POLISH_TYPE .)
+    COLOR_NEUTRAL   reduce using rule 21 (Command -> POLISH_TYPE .)
+    COLOR_WHITE     reduce using rule 21 (Command -> POLISH_TYPE .)
+    COLOR_BLACK     reduce using rule 21 (Command -> POLISH_TYPE .)
+    COMMENT         reduce using rule 21 (Command -> POLISH_TYPE .)
+    BUT             reduce using rule 21 (Command -> POLISH_TYPE .)
+    MOVE_NUMBER     reduce using rule 21 (Command -> POLISH_TYPE .)
+
+
+state 42
+
+    (22) Command -> IMITATOR . SquareList
+    (37) SquareList -> . SQUARE
+    (38) SquareList -> . SQUARE COMMA SquareList
+    (39) SquareList -> . SQUARE SquareList
+
+    SQUARE          shift and go to state 77
+
+    SquareList                     shift and go to state 76
+
+state 43
+
+    (23) Command -> LongPieceDecl . SQUARE LONG_ARROW SQUARE
+    (24) Command -> LongPieceDecl . SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE
+    (27) Command -> LongPieceDecl . SQUARE
+
+    SQUARE          shift and go to state 78
+
+
+state 44
+
+    (25) Command -> DASH . LongPieceDecl SQUARE
+    (28) LongPieceDecl -> . ColorPrefix PIECE_NAME
+    (29) LongPieceDecl -> . ColorPrefix FAIRY_PROPERTIES PIECE_NAME
+    (30) ColorPrefix -> . COLOR_NEUTRAL
+    (31) ColorPrefix -> . COLOR_WHITE
+    (32) ColorPrefix -> . COLOR_BLACK
+
+    COLOR_NEUTRAL   shift and go to state 47
+    COLOR_WHITE     shift and go to state 48
+    COLOR_BLACK     shift and go to state 49
+
+    LongPieceDecl                  shift and go to state 79
+    ColorPrefix                    shift and go to state 46
+
+state 45
+
+    (26) Command -> PLUS . LongPieceDecl SQUARE
+    (28) LongPieceDecl -> . ColorPrefix PIECE_NAME
+    (29) LongPieceDecl -> . ColorPrefix FAIRY_PROPERTIES PIECE_NAME
+    (30) ColorPrefix -> . COLOR_NEUTRAL
+    (31) ColorPrefix -> . COLOR_WHITE
+    (32) ColorPrefix -> . COLOR_BLACK
+
+    COLOR_NEUTRAL   shift and go to state 47
+    COLOR_WHITE     shift and go to state 48
+    COLOR_BLACK     shift and go to state 49
+
+    LongPieceDecl                  shift and go to state 80
+    ColorPrefix                    shift and go to state 46
+
+state 46
+
+    (28) LongPieceDecl -> ColorPrefix . PIECE_NAME
+    (29) LongPieceDecl -> ColorPrefix . FAIRY_PROPERTIES PIECE_NAME
+
+    PIECE_NAME      shift and go to state 81
+    FAIRY_PROPERTIES shift and go to state 82
+
+
+state 47
+
+    (30) ColorPrefix -> COLOR_NEUTRAL .
+
+    PIECE_NAME      reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    FAIRY_PROPERTIES reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+
+
+state 48
+
+    (31) ColorPrefix -> COLOR_WHITE .
+
+    PIECE_NAME      reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    FAIRY_PROPERTIES reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    EQUALS          reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    LEFT_SQUARE_BRACKET reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    PLUS            reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    OTHER_CHECK_SIGN reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    THREAT          reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    ZUGZWANG        reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    ANNOTATION      reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    COMMENT         reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    COLOR_NEUTRAL   reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    KINGSIDE_CASTLING reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    QUEENSIDE_CASTLING reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    SQUARE          reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    BUT             reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    MOVE_NUMBER     reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    $end            reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    TWIN_ID         reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+    RIGHT_SQUARE_BRACKET reduce using rule 31 (ColorPrefix -> COLOR_WHITE .)
+
+
+state 49
+
+    (32) ColorPrefix -> COLOR_BLACK .
+
+    PIECE_NAME      reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    FAIRY_PROPERTIES reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    EQUALS          reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    LEFT_SQUARE_BRACKET reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    PLUS            reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    OTHER_CHECK_SIGN reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    THREAT          reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    ZUGZWANG        reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    ANNOTATION      reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    COMMENT         reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    COLOR_NEUTRAL   reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    KINGSIDE_CASTLING reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    QUEENSIDE_CASTLING reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    SQUARE          reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    BUT             reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    MOVE_NUMBER     reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    $end            reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    TWIN_ID         reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+    RIGHT_SQUARE_BRACKET reduce using rule 32 (ColorPrefix -> COLOR_BLACK .)
+
+
+state 50
+
+    (15) TwinBullet -> PLUS TWIN_ID .
+
+    ROTATE          reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    MIRROR          reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    SHIFT           reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    POLISH_TYPE     reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    IMITATOR        reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    DASH            reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    PLUS            reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    COLOR_NEUTRAL   reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    COLOR_WHITE     reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    COLOR_BLACK     reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    COMMENT         reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    BUT             reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+    MOVE_NUMBER     reduce using rule 15 (TwinBullet -> PLUS TWIN_ID .)
+
+
+state 51
+
+    (42) Move -> BUT MOVE_NUMBER HALF_ELLIPSIS . HalfMove
+    (49) HalfMove -> . Ply CheckSign
+    (50) HalfMove -> . Ply
+    (51) HalfMove -> . HalfMove ANNOTATION
+    (52) HalfMove -> . HalfMove Comments
+    (55) Ply -> . Body
+    (56) Ply -> . Ply EQUALS ColorPrefix
+    (57) Ply -> . Ply EQUALS PieceDecl
+    (58) Ply -> . Ply EQUALS LongPieceDecl
+    (59) Ply -> . Ply EQUALS
+    (60) Ply -> . Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (61) Ply -> . Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET
+    (62) Ply -> . Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (63) Ply -> . Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET
+    (64) Ply -> . Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (65) Ply -> . Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET
+    (66) Ply -> . Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET
+    (67) Ply -> . Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET
+    (68) Body -> . PieceDecl Squares
+    (69) Body -> . Castling
+    (70) Body -> . PawnMove
+    (33) PieceDecl -> . PIECE_NAME
+    (34) PieceDecl -> . COLOR_NEUTRAL PIECE_NAME
+    (35) PieceDecl -> . COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME
+    (36) PieceDecl -> . FAIRY_PROPERTIES PIECE_NAME
+    (76) Castling -> . KINGSIDE_CASTLING
+    (77) Castling -> . QUEENSIDE_CASTLING
+    (71) PawnMove -> . Squares
+    (72) PawnMove -> . PawnMove EN_PASSANT
+    (73) Squares -> . SQUARE DASH SQUARE
+    (74) Squares -> . SQUARE ASTERISK SQUARE
+    (75) Squares -> . SQUARE ASTERISK SQUARE DASH SQUARE
+
+    PIECE_NAME      shift and go to state 29
+    COLOR_NEUTRAL   shift and go to state 30
+    FAIRY_PROPERTIES shift and go to state 31
+    KINGSIDE_CASTLING shift and go to state 32
+    QUEENSIDE_CASTLING shift and go to state 33
+    SQUARE          shift and go to state 25
+
+    HalfMove                       shift and go to state 83
+    Ply                            shift and go to state 22
+    Body                           shift and go to state 23
+    PieceDecl                      shift and go to state 24
+    Squares                        shift and go to state 26
+    Castling                       shift and go to state 27
+    PawnMove                       shift and go to state 28
+
+state 52
+
+    (43) Move -> MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS .
+
+    BUT             reduce using rule 43 (Move -> MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS .)
+    MOVE_NUMBER     reduce using rule 43 (Move -> MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS .)
+    $end            reduce using rule 43 (Move -> MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS .)
+    TWIN_ID         reduce using rule 43 (Move -> MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS .)
+    PLUS            reduce using rule 43 (Move -> MOVE_NUMBER HALF_ELLIPSIS ELLIPSIS .)
+
+
+state 53
+
+    (44) Move -> MOVE_NUMBER HALF_ELLIPSIS HalfMove .
+    (51) HalfMove -> HalfMove . ANNOTATION
+    (52) HalfMove -> HalfMove . Comments
+    (5) Comments -> . COMMENT
+    (6) Comments -> . COMMENT Comments
+
+    BUT             reduce using rule 44 (Move -> MOVE_NUMBER HALF_ELLIPSIS HalfMove .)
+    MOVE_NUMBER     reduce using rule 44 (Move -> MOVE_NUMBER HALF_ELLIPSIS HalfMove .)
+    $end            reduce using rule 44 (Move -> MOVE_NUMBER HALF_ELLIPSIS HalfMove .)
+    TWIN_ID         reduce using rule 44 (Move -> MOVE_NUMBER HALF_ELLIPSIS HalfMove .)
+    PLUS            reduce using rule 44 (Move -> MOVE_NUMBER HALF_ELLIPSIS HalfMove .)
+    ANNOTATION      shift and go to state 57
+    COMMENT         shift and go to state 8
+
+    Comments                       shift and go to state 58
+
+state 54
+
+    (47) Move -> MOVE_NUMBER HalfMove HalfMove .
+    (51) HalfMove -> HalfMove . ANNOTATION
+    (52) HalfMove -> HalfMove . Comments
+    (5) Comments -> . COMMENT
+    (6) Comments -> . COMMENT Comments
+
+    BUT             reduce using rule 47 (Move -> MOVE_NUMBER HalfMove HalfMove .)
+    MOVE_NUMBER     reduce using rule 47 (Move -> MOVE_NUMBER HalfMove HalfMove .)
+    $end            reduce using rule 47 (Move -> MOVE_NUMBER HalfMove HalfMove .)
+    TWIN_ID         reduce using rule 47 (Move -> MOVE_NUMBER HalfMove HalfMove .)
+    PLUS            reduce using rule 47 (Move -> MOVE_NUMBER HalfMove HalfMove .)
+    ANNOTATION      shift and go to state 57
+    COMMENT         shift and go to state 8
+
+    Comments                       shift and go to state 58
+
+state 55
+
+    (45) Move -> MOVE_NUMBER HalfMove THREAT .
+
+    BUT             reduce using rule 45 (Move -> MOVE_NUMBER HalfMove THREAT .)
+    MOVE_NUMBER     reduce using rule 45 (Move -> MOVE_NUMBER HalfMove THREAT .)
+    $end            reduce using rule 45 (Move -> MOVE_NUMBER HalfMove THREAT .)
+    TWIN_ID         reduce using rule 45 (Move -> MOVE_NUMBER HalfMove THREAT .)
+    PLUS            reduce using rule 45 (Move -> MOVE_NUMBER HalfMove THREAT .)
+
+
+state 56
+
+    (46) Move -> MOVE_NUMBER HalfMove ZUGZWANG .
+
+    BUT             reduce using rule 46 (Move -> MOVE_NUMBER HalfMove ZUGZWANG .)
+    MOVE_NUMBER     reduce using rule 46 (Move -> MOVE_NUMBER HalfMove ZUGZWANG .)
+    $end            reduce using rule 46 (Move -> MOVE_NUMBER HalfMove ZUGZWANG .)
+    TWIN_ID         reduce using rule 46 (Move -> MOVE_NUMBER HalfMove ZUGZWANG .)
+    PLUS            reduce using rule 46 (Move -> MOVE_NUMBER HalfMove ZUGZWANG .)
+
+
+state 57
+
+    (51) HalfMove -> HalfMove ANNOTATION .
+
+    THREAT          reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    ZUGZWANG        reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    ANNOTATION      reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    COMMENT         reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    PIECE_NAME      reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    COLOR_NEUTRAL   reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    FAIRY_PROPERTIES reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    KINGSIDE_CASTLING reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    QUEENSIDE_CASTLING reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    SQUARE          reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    BUT             reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    MOVE_NUMBER     reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    $end            reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    TWIN_ID         reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+    PLUS            reduce using rule 51 (HalfMove -> HalfMove ANNOTATION .)
+
+
+state 58
+
+    (52) HalfMove -> HalfMove Comments .
+
+    THREAT          reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    ZUGZWANG        reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    ANNOTATION      reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    COMMENT         reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    PIECE_NAME      reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    COLOR_NEUTRAL   reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    FAIRY_PROPERTIES reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    KINGSIDE_CASTLING reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    QUEENSIDE_CASTLING reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    SQUARE          reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    BUT             reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    MOVE_NUMBER     reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    $end            reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    TWIN_ID         reduce using rule 52 (HalfMove -> HalfMove Comments .)
+    PLUS            reduce using rule 52 (HalfMove -> HalfMove Comments .)
+
+
+state 59
+
+    (49) HalfMove -> Ply CheckSign .
+
+    THREAT          reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    ZUGZWANG        reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    ANNOTATION      reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    COMMENT         reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    PIECE_NAME      reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    COLOR_NEUTRAL   reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    FAIRY_PROPERTIES reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    KINGSIDE_CASTLING reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    QUEENSIDE_CASTLING reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    SQUARE          reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    BUT             reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    MOVE_NUMBER     reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    $end            reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    TWIN_ID         reduce using rule 49 (HalfMove -> Ply CheckSign .)
+    PLUS            reduce using rule 49 (HalfMove -> Ply CheckSign .)
+
+
+state 60
+
+    (56) Ply -> Ply EQUALS . ColorPrefix
+    (57) Ply -> Ply EQUALS . PieceDecl
+    (58) Ply -> Ply EQUALS . LongPieceDecl
+    (59) Ply -> Ply EQUALS .
+    (30) ColorPrefix -> . COLOR_NEUTRAL
+    (31) ColorPrefix -> . COLOR_WHITE
+    (32) ColorPrefix -> . COLOR_BLACK
+    (33) PieceDecl -> . PIECE_NAME
+    (34) PieceDecl -> . COLOR_NEUTRAL PIECE_NAME
+    (35) PieceDecl -> . COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME
+    (36) PieceDecl -> . FAIRY_PROPERTIES PIECE_NAME
+    (28) LongPieceDecl -> . ColorPrefix PIECE_NAME
+    (29) LongPieceDecl -> . ColorPrefix FAIRY_PROPERTIES PIECE_NAME
+
+  ! shift/reduce conflict for COLOR_NEUTRAL resolved as shift
+  ! shift/reduce conflict for PIECE_NAME resolved as shift
+  ! shift/reduce conflict for FAIRY_PROPERTIES resolved as shift
+    EQUALS          reduce using rule 59 (Ply -> Ply EQUALS .)
+    LEFT_SQUARE_BRACKET reduce using rule 59 (Ply -> Ply EQUALS .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 59 (Ply -> Ply EQUALS .)
+    PLUS            reduce using rule 59 (Ply -> Ply EQUALS .)
+    OTHER_CHECK_SIGN reduce using rule 59 (Ply -> Ply EQUALS .)
+    THREAT          reduce using rule 59 (Ply -> Ply EQUALS .)
+    ZUGZWANG        reduce using rule 59 (Ply -> Ply EQUALS .)
+    ANNOTATION      reduce using rule 59 (Ply -> Ply EQUALS .)
+    COMMENT         reduce using rule 59 (Ply -> Ply EQUALS .)
+    KINGSIDE_CASTLING reduce using rule 59 (Ply -> Ply EQUALS .)
+    QUEENSIDE_CASTLING reduce using rule 59 (Ply -> Ply EQUALS .)
+    SQUARE          reduce using rule 59 (Ply -> Ply EQUALS .)
+    BUT             reduce using rule 59 (Ply -> Ply EQUALS .)
+    MOVE_NUMBER     reduce using rule 59 (Ply -> Ply EQUALS .)
+    $end            reduce using rule 59 (Ply -> Ply EQUALS .)
+    TWIN_ID         reduce using rule 59 (Ply -> Ply EQUALS .)
+    COLOR_NEUTRAL   shift and go to state 87
+    COLOR_WHITE     shift and go to state 48
+    COLOR_BLACK     shift and go to state 49
+    PIECE_NAME      shift and go to state 29
+    FAIRY_PROPERTIES shift and go to state 31
+
+  ! PIECE_NAME      [ reduce using rule 59 (Ply -> Ply EQUALS .) ]
+  ! COLOR_NEUTRAL   [ reduce using rule 59 (Ply -> Ply EQUALS .) ]
+  ! FAIRY_PROPERTIES [ reduce using rule 59 (Ply -> Ply EQUALS .) ]
+
+    ColorPrefix                    shift and go to state 84
+    PieceDecl                      shift and go to state 85
+    LongPieceDecl                  shift and go to state 86
+
+state 61
+
+    (60) Ply -> Ply LEFT_SQUARE_BRACKET . PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (61) Ply -> Ply LEFT_SQUARE_BRACKET . PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET
+    (62) Ply -> Ply LEFT_SQUARE_BRACKET . LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (63) Ply -> Ply LEFT_SQUARE_BRACKET . LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET
+    (64) Ply -> Ply LEFT_SQUARE_BRACKET . SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (65) Ply -> Ply LEFT_SQUARE_BRACKET . SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET
+    (66) Ply -> Ply LEFT_SQUARE_BRACKET . DASH SQUARE RIGHT_SQUARE_BRACKET
+    (28) LongPieceDecl -> . ColorPrefix PIECE_NAME
+    (29) LongPieceDecl -> . ColorPrefix FAIRY_PROPERTIES PIECE_NAME
+    (30) ColorPrefix -> . COLOR_NEUTRAL
+    (31) ColorPrefix -> . COLOR_WHITE
+    (32) ColorPrefix -> . COLOR_BLACK
+
+    PLUS            shift and go to state 88
+    SQUARE          shift and go to state 90
+    DASH            shift and go to state 91
+    COLOR_NEUTRAL   shift and go to state 47
+    COLOR_WHITE     shift and go to state 48
+    COLOR_BLACK     shift and go to state 49
+
+    LongPieceDecl                  shift and go to state 89
+    ColorPrefix                    shift and go to state 46
+
+state 62
+
+    (53) CheckSign -> PLUS .
+
+    THREAT          reduce using rule 53 (CheckSign -> PLUS .)
+    ZUGZWANG        reduce using rule 53 (CheckSign -> PLUS .)
+    ANNOTATION      reduce using rule 53 (CheckSign -> PLUS .)
+    COMMENT         reduce using rule 53 (CheckSign -> PLUS .)
+    PIECE_NAME      reduce using rule 53 (CheckSign -> PLUS .)
+    COLOR_NEUTRAL   reduce using rule 53 (CheckSign -> PLUS .)
+    FAIRY_PROPERTIES reduce using rule 53 (CheckSign -> PLUS .)
+    KINGSIDE_CASTLING reduce using rule 53 (CheckSign -> PLUS .)
+    QUEENSIDE_CASTLING reduce using rule 53 (CheckSign -> PLUS .)
+    SQUARE          reduce using rule 53 (CheckSign -> PLUS .)
+    BUT             reduce using rule 53 (CheckSign -> PLUS .)
+    MOVE_NUMBER     reduce using rule 53 (CheckSign -> PLUS .)
+    $end            reduce using rule 53 (CheckSign -> PLUS .)
+    TWIN_ID         reduce using rule 53 (CheckSign -> PLUS .)
+    PLUS            reduce using rule 53 (CheckSign -> PLUS .)
+
+
+state 63
+
+    (67) Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET . SquareList RIGHT_SQUARE_BRACKET
+    (37) SquareList -> . SQUARE
+    (38) SquareList -> . SQUARE COMMA SquareList
+    (39) SquareList -> . SQUARE SquareList
+
+    SQUARE          shift and go to state 77
+
+    SquareList                     shift and go to state 92
+
+state 64
+
+    (54) CheckSign -> OTHER_CHECK_SIGN .
+
+    THREAT          reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    ZUGZWANG        reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    ANNOTATION      reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    COMMENT         reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    PIECE_NAME      reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    COLOR_NEUTRAL   reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    FAIRY_PROPERTIES reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    KINGSIDE_CASTLING reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    QUEENSIDE_CASTLING reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    SQUARE          reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    BUT             reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    MOVE_NUMBER     reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    $end            reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    TWIN_ID         reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+    PLUS            reduce using rule 54 (CheckSign -> OTHER_CHECK_SIGN .)
+
+
+state 65
+
+    (68) Body -> PieceDecl Squares .
+
+    EQUALS          reduce using rule 68 (Body -> PieceDecl Squares .)
+    LEFT_SQUARE_BRACKET reduce using rule 68 (Body -> PieceDecl Squares .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 68 (Body -> PieceDecl Squares .)
+    PLUS            reduce using rule 68 (Body -> PieceDecl Squares .)
+    OTHER_CHECK_SIGN reduce using rule 68 (Body -> PieceDecl Squares .)
+    THREAT          reduce using rule 68 (Body -> PieceDecl Squares .)
+    ZUGZWANG        reduce using rule 68 (Body -> PieceDecl Squares .)
+    ANNOTATION      reduce using rule 68 (Body -> PieceDecl Squares .)
+    COMMENT         reduce using rule 68 (Body -> PieceDecl Squares .)
+    PIECE_NAME      reduce using rule 68 (Body -> PieceDecl Squares .)
+    COLOR_NEUTRAL   reduce using rule 68 (Body -> PieceDecl Squares .)
+    FAIRY_PROPERTIES reduce using rule 68 (Body -> PieceDecl Squares .)
+    KINGSIDE_CASTLING reduce using rule 68 (Body -> PieceDecl Squares .)
+    QUEENSIDE_CASTLING reduce using rule 68 (Body -> PieceDecl Squares .)
+    SQUARE          reduce using rule 68 (Body -> PieceDecl Squares .)
+    BUT             reduce using rule 68 (Body -> PieceDecl Squares .)
+    MOVE_NUMBER     reduce using rule 68 (Body -> PieceDecl Squares .)
+    $end            reduce using rule 68 (Body -> PieceDecl Squares .)
+    TWIN_ID         reduce using rule 68 (Body -> PieceDecl Squares .)
+
+
+state 66
+
+    (73) Squares -> SQUARE DASH . SQUARE
+
+    SQUARE          shift and go to state 93
+
+
+state 67
+
+    (74) Squares -> SQUARE ASTERISK . SQUARE
+    (75) Squares -> SQUARE ASTERISK . SQUARE DASH SQUARE
+
+    SQUARE          shift and go to state 94
+
+
+state 68
+
+    (72) PawnMove -> PawnMove EN_PASSANT .
+
+    EN_PASSANT      reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    EQUALS          reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    LEFT_SQUARE_BRACKET reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    PLUS            reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    OTHER_CHECK_SIGN reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    THREAT          reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    ZUGZWANG        reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    ANNOTATION      reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    COMMENT         reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    PIECE_NAME      reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    COLOR_NEUTRAL   reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    FAIRY_PROPERTIES reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    KINGSIDE_CASTLING reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    QUEENSIDE_CASTLING reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    SQUARE          reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    BUT             reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    MOVE_NUMBER     reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    $end            reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+    TWIN_ID         reduce using rule 72 (PawnMove -> PawnMove EN_PASSANT .)
+
+
+state 69
+
+    (34) PieceDecl -> COLOR_NEUTRAL PIECE_NAME .
+
+    SQUARE          reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    EQUALS          reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    LEFT_SQUARE_BRACKET reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    PLUS            reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    OTHER_CHECK_SIGN reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    THREAT          reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    ZUGZWANG        reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    ANNOTATION      reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    COMMENT         reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    PIECE_NAME      reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    COLOR_NEUTRAL   reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    FAIRY_PROPERTIES reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    KINGSIDE_CASTLING reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    QUEENSIDE_CASTLING reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    BUT             reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    MOVE_NUMBER     reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    $end            reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    TWIN_ID         reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+    RIGHT_SQUARE_BRACKET reduce using rule 34 (PieceDecl -> COLOR_NEUTRAL PIECE_NAME .)
+
+
+state 70
+
+    (35) PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES . PIECE_NAME
+
+    PIECE_NAME      shift and go to state 95
+
+
+state 71
+
+    (36) PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .
+
+    SQUARE          reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    EQUALS          reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    LEFT_SQUARE_BRACKET reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    PLUS            reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    OTHER_CHECK_SIGN reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    THREAT          reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    ZUGZWANG        reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    ANNOTATION      reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    COMMENT         reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    PIECE_NAME      reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    COLOR_NEUTRAL   reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    FAIRY_PROPERTIES reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    KINGSIDE_CASTLING reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    QUEENSIDE_CASTLING reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    BUT             reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    MOVE_NUMBER     reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    $end            reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    TWIN_ID         reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+    RIGHT_SQUARE_BRACKET reduce using rule 36 (PieceDecl -> FAIRY_PROPERTIES PIECE_NAME .)
+
+
+state 72
+
+    (17) CommandList -> CommandList Command .
+
+    ROTATE          reduce using rule 17 (CommandList -> CommandList Command .)
+    MIRROR          reduce using rule 17 (CommandList -> CommandList Command .)
+    SHIFT           reduce using rule 17 (CommandList -> CommandList Command .)
+    POLISH_TYPE     reduce using rule 17 (CommandList -> CommandList Command .)
+    IMITATOR        reduce using rule 17 (CommandList -> CommandList Command .)
+    DASH            reduce using rule 17 (CommandList -> CommandList Command .)
+    PLUS            reduce using rule 17 (CommandList -> CommandList Command .)
+    COLOR_NEUTRAL   reduce using rule 17 (CommandList -> CommandList Command .)
+    COLOR_WHITE     reduce using rule 17 (CommandList -> CommandList Command .)
+    COLOR_BLACK     reduce using rule 17 (CommandList -> CommandList Command .)
+    COMMENT         reduce using rule 17 (CommandList -> CommandList Command .)
+    BUT             reduce using rule 17 (CommandList -> CommandList Command .)
+    MOVE_NUMBER     reduce using rule 17 (CommandList -> CommandList Command .)
+
+
+state 73
+
+    (18) Command -> ROTATE ANGLE .
+
+    ROTATE          reduce using rule 18 (Command -> ROTATE ANGLE .)
+    MIRROR          reduce using rule 18 (Command -> ROTATE ANGLE .)
+    SHIFT           reduce using rule 18 (Command -> ROTATE ANGLE .)
+    POLISH_TYPE     reduce using rule 18 (Command -> ROTATE ANGLE .)
+    IMITATOR        reduce using rule 18 (Command -> ROTATE ANGLE .)
+    DASH            reduce using rule 18 (Command -> ROTATE ANGLE .)
+    PLUS            reduce using rule 18 (Command -> ROTATE ANGLE .)
+    COLOR_NEUTRAL   reduce using rule 18 (Command -> ROTATE ANGLE .)
+    COLOR_WHITE     reduce using rule 18 (Command -> ROTATE ANGLE .)
+    COLOR_BLACK     reduce using rule 18 (Command -> ROTATE ANGLE .)
+    COMMENT         reduce using rule 18 (Command -> ROTATE ANGLE .)
+    BUT             reduce using rule 18 (Command -> ROTATE ANGLE .)
+    MOVE_NUMBER     reduce using rule 18 (Command -> ROTATE ANGLE .)
+
+
+state 74
+
+    (19) Command -> MIRROR SQUARE . DOUBLE_POINTED_ARROW SQUARE
+
+    DOUBLE_POINTED_ARROW shift and go to state 96
+
+
+state 75
+
+    (20) Command -> SHIFT SQUARE . LONG_DOUBLE_ARROW SQUARE
+
+    LONG_DOUBLE_ARROW shift and go to state 97
+
+
+state 76
+
+    (22) Command -> IMITATOR SquareList .
+
+    ROTATE          reduce using rule 22 (Command -> IMITATOR SquareList .)
+    MIRROR          reduce using rule 22 (Command -> IMITATOR SquareList .)
+    SHIFT           reduce using rule 22 (Command -> IMITATOR SquareList .)
+    POLISH_TYPE     reduce using rule 22 (Command -> IMITATOR SquareList .)
+    IMITATOR        reduce using rule 22 (Command -> IMITATOR SquareList .)
+    DASH            reduce using rule 22 (Command -> IMITATOR SquareList .)
+    PLUS            reduce using rule 22 (Command -> IMITATOR SquareList .)
+    COLOR_NEUTRAL   reduce using rule 22 (Command -> IMITATOR SquareList .)
+    COLOR_WHITE     reduce using rule 22 (Command -> IMITATOR SquareList .)
+    COLOR_BLACK     reduce using rule 22 (Command -> IMITATOR SquareList .)
+    COMMENT         reduce using rule 22 (Command -> IMITATOR SquareList .)
+    BUT             reduce using rule 22 (Command -> IMITATOR SquareList .)
+    MOVE_NUMBER     reduce using rule 22 (Command -> IMITATOR SquareList .)
+
+
+state 77
+
+    (37) SquareList -> SQUARE .
+    (38) SquareList -> SQUARE . COMMA SquareList
+    (39) SquareList -> SQUARE . SquareList
+    (37) SquareList -> . SQUARE
+    (38) SquareList -> . SQUARE COMMA SquareList
+    (39) SquareList -> . SQUARE SquareList
+
+    ROTATE          reduce using rule 37 (SquareList -> SQUARE .)
+    MIRROR          reduce using rule 37 (SquareList -> SQUARE .)
+    SHIFT           reduce using rule 37 (SquareList -> SQUARE .)
+    POLISH_TYPE     reduce using rule 37 (SquareList -> SQUARE .)
+    IMITATOR        reduce using rule 37 (SquareList -> SQUARE .)
+    DASH            reduce using rule 37 (SquareList -> SQUARE .)
+    PLUS            reduce using rule 37 (SquareList -> SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 37 (SquareList -> SQUARE .)
+    COLOR_WHITE     reduce using rule 37 (SquareList -> SQUARE .)
+    COLOR_BLACK     reduce using rule 37 (SquareList -> SQUARE .)
+    COMMENT         reduce using rule 37 (SquareList -> SQUARE .)
+    BUT             reduce using rule 37 (SquareList -> SQUARE .)
+    MOVE_NUMBER     reduce using rule 37 (SquareList -> SQUARE .)
+    RIGHT_SQUARE_BRACKET reduce using rule 37 (SquareList -> SQUARE .)
+    COMMA           shift and go to state 98
+    SQUARE          shift and go to state 77
+
+    SquareList                     shift and go to state 99
+
+state 78
+
+    (23) Command -> LongPieceDecl SQUARE . LONG_ARROW SQUARE
+    (24) Command -> LongPieceDecl SQUARE . DOUBLE_POINTED_ARROW LongPieceDecl SQUARE
+    (27) Command -> LongPieceDecl SQUARE .
+
+    LONG_ARROW      shift and go to state 100
+    DOUBLE_POINTED_ARROW shift and go to state 101
+    ROTATE          reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    MIRROR          reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    SHIFT           reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    POLISH_TYPE     reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    IMITATOR        reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    DASH            reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    PLUS            reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    COLOR_WHITE     reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    COLOR_BLACK     reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    COMMENT         reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    BUT             reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+    MOVE_NUMBER     reduce using rule 27 (Command -> LongPieceDecl SQUARE .)
+
+
+state 79
+
+    (25) Command -> DASH LongPieceDecl . SQUARE
+
+    SQUARE          shift and go to state 102
+
+
+state 80
+
+    (26) Command -> PLUS LongPieceDecl . SQUARE
+
+    SQUARE          shift and go to state 103
+
+
+state 81
+
+    (28) LongPieceDecl -> ColorPrefix PIECE_NAME .
+
+    SQUARE          reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    EQUALS          reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    LEFT_SQUARE_BRACKET reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    PLUS            reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    OTHER_CHECK_SIGN reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    THREAT          reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    ZUGZWANG        reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    ANNOTATION      reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    COMMENT         reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    PIECE_NAME      reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    COLOR_NEUTRAL   reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    FAIRY_PROPERTIES reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    KINGSIDE_CASTLING reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    QUEENSIDE_CASTLING reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    BUT             reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    MOVE_NUMBER     reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    $end            reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+    TWIN_ID         reduce using rule 28 (LongPieceDecl -> ColorPrefix PIECE_NAME .)
+
+
+state 82
+
+    (29) LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES . PIECE_NAME
+
+    PIECE_NAME      shift and go to state 104
+
+
+state 83
+
+    (42) Move -> BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove .
+    (51) HalfMove -> HalfMove . ANNOTATION
+    (52) HalfMove -> HalfMove . Comments
+    (5) Comments -> . COMMENT
+    (6) Comments -> . COMMENT Comments
+
+    BUT             reduce using rule 42 (Move -> BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove .)
+    MOVE_NUMBER     reduce using rule 42 (Move -> BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove .)
+    $end            reduce using rule 42 (Move -> BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove .)
+    TWIN_ID         reduce using rule 42 (Move -> BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove .)
+    PLUS            reduce using rule 42 (Move -> BUT MOVE_NUMBER HALF_ELLIPSIS HalfMove .)
+    ANNOTATION      shift and go to state 57
+    COMMENT         shift and go to state 8
+
+    Comments                       shift and go to state 58
+
+state 84
+
+    (56) Ply -> Ply EQUALS ColorPrefix .
+    (28) LongPieceDecl -> ColorPrefix . PIECE_NAME
+    (29) LongPieceDecl -> ColorPrefix . FAIRY_PROPERTIES PIECE_NAME
+
+  ! shift/reduce conflict for PIECE_NAME resolved as shift
+  ! shift/reduce conflict for FAIRY_PROPERTIES resolved as shift
+    EQUALS          reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    LEFT_SQUARE_BRACKET reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    PLUS            reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    OTHER_CHECK_SIGN reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    THREAT          reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    ZUGZWANG        reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    ANNOTATION      reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    COMMENT         reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    COLOR_NEUTRAL   reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    KINGSIDE_CASTLING reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    QUEENSIDE_CASTLING reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    SQUARE          reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    BUT             reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    MOVE_NUMBER     reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    $end            reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    TWIN_ID         reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .)
+    PIECE_NAME      shift and go to state 81
+    FAIRY_PROPERTIES shift and go to state 82
+
+  ! PIECE_NAME      [ reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .) ]
+  ! FAIRY_PROPERTIES [ reduce using rule 56 (Ply -> Ply EQUALS ColorPrefix .) ]
+
+
+state 85
+
+    (57) Ply -> Ply EQUALS PieceDecl .
+
+    EQUALS          reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    LEFT_SQUARE_BRACKET reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    PLUS            reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    OTHER_CHECK_SIGN reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    THREAT          reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    ZUGZWANG        reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    ANNOTATION      reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    COMMENT         reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    PIECE_NAME      reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    COLOR_NEUTRAL   reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    FAIRY_PROPERTIES reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    KINGSIDE_CASTLING reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    QUEENSIDE_CASTLING reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    SQUARE          reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    BUT             reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    MOVE_NUMBER     reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    $end            reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+    TWIN_ID         reduce using rule 57 (Ply -> Ply EQUALS PieceDecl .)
+
+
+state 86
+
+    (58) Ply -> Ply EQUALS LongPieceDecl .
+
+    EQUALS          reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    LEFT_SQUARE_BRACKET reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    PLUS            reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    OTHER_CHECK_SIGN reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    THREAT          reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    ZUGZWANG        reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    ANNOTATION      reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    COMMENT         reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    PIECE_NAME      reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    COLOR_NEUTRAL   reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    FAIRY_PROPERTIES reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    KINGSIDE_CASTLING reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    QUEENSIDE_CASTLING reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    SQUARE          reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    BUT             reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    MOVE_NUMBER     reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    $end            reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+    TWIN_ID         reduce using rule 58 (Ply -> Ply EQUALS LongPieceDecl .)
+
+
+state 87
+
+    (30) ColorPrefix -> COLOR_NEUTRAL .
+    (34) PieceDecl -> COLOR_NEUTRAL . PIECE_NAME
+    (35) PieceDecl -> COLOR_NEUTRAL . FAIRY_PROPERTIES PIECE_NAME
+
+  ! shift/reduce conflict for PIECE_NAME resolved as shift
+  ! shift/reduce conflict for FAIRY_PROPERTIES resolved as shift
+    EQUALS          reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    LEFT_SQUARE_BRACKET reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    PLUS            reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    OTHER_CHECK_SIGN reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    THREAT          reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    ZUGZWANG        reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    ANNOTATION      reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    COMMENT         reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    COLOR_NEUTRAL   reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    KINGSIDE_CASTLING reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    QUEENSIDE_CASTLING reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    SQUARE          reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    BUT             reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    MOVE_NUMBER     reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    $end            reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    TWIN_ID         reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+    PIECE_NAME      shift and go to state 69
+    FAIRY_PROPERTIES shift and go to state 70
+
+  ! PIECE_NAME      [ reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .) ]
+  ! FAIRY_PROPERTIES [ reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .) ]
+
+
+state 88
+
+    (60) Ply -> Ply LEFT_SQUARE_BRACKET PLUS . LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (61) Ply -> Ply LEFT_SQUARE_BRACKET PLUS . LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET
+    (28) LongPieceDecl -> . ColorPrefix PIECE_NAME
+    (29) LongPieceDecl -> . ColorPrefix FAIRY_PROPERTIES PIECE_NAME
+    (30) ColorPrefix -> . COLOR_NEUTRAL
+    (31) ColorPrefix -> . COLOR_WHITE
+    (32) ColorPrefix -> . COLOR_BLACK
+
+    COLOR_NEUTRAL   shift and go to state 47
+    COLOR_WHITE     shift and go to state 48
+    COLOR_BLACK     shift and go to state 49
+
+    LongPieceDecl                  shift and go to state 105
+    ColorPrefix                    shift and go to state 46
+
+state 89
+
+    (62) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl . SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (63) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl . SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET
+
+    SQUARE          shift and go to state 106
+
+
+state 90
+
+    (64) Ply -> Ply LEFT_SQUARE_BRACKET SQUARE . EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (65) Ply -> Ply LEFT_SQUARE_BRACKET SQUARE . EQUALS ColorPrefix RIGHT_SQUARE_BRACKET
+
+    EQUALS          shift and go to state 107
+
+
+state 91
+
+    (66) Ply -> Ply LEFT_SQUARE_BRACKET DASH . SQUARE RIGHT_SQUARE_BRACKET
+
+    SQUARE          shift and go to state 108
+
+
+state 92
+
+    (67) Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList . RIGHT_SQUARE_BRACKET
+
+    RIGHT_SQUARE_BRACKET shift and go to state 109
+
+
+state 93
+
+    (73) Squares -> SQUARE DASH SQUARE .
+
+    EN_PASSANT      reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    EQUALS          reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    LEFT_SQUARE_BRACKET reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    PLUS            reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    OTHER_CHECK_SIGN reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    THREAT          reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    ZUGZWANG        reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    ANNOTATION      reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    COMMENT         reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    PIECE_NAME      reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    FAIRY_PROPERTIES reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    KINGSIDE_CASTLING reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    QUEENSIDE_CASTLING reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    SQUARE          reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    BUT             reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    MOVE_NUMBER     reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    $end            reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+    TWIN_ID         reduce using rule 73 (Squares -> SQUARE DASH SQUARE .)
+
+
+state 94
+
+    (74) Squares -> SQUARE ASTERISK SQUARE .
+    (75) Squares -> SQUARE ASTERISK SQUARE . DASH SQUARE
+
+    EN_PASSANT      reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    EQUALS          reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    LEFT_SQUARE_BRACKET reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    PLUS            reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    OTHER_CHECK_SIGN reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    THREAT          reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    ZUGZWANG        reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    ANNOTATION      reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    COMMENT         reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    PIECE_NAME      reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    FAIRY_PROPERTIES reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    KINGSIDE_CASTLING reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    QUEENSIDE_CASTLING reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    SQUARE          reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    BUT             reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    MOVE_NUMBER     reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    $end            reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    TWIN_ID         reduce using rule 74 (Squares -> SQUARE ASTERISK SQUARE .)
+    DASH            shift and go to state 110
+
+
+state 95
+
+    (35) PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .
+
+    SQUARE          reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    EQUALS          reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    LEFT_SQUARE_BRACKET reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    PLUS            reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    OTHER_CHECK_SIGN reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    THREAT          reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    ZUGZWANG        reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    ANNOTATION      reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    COMMENT         reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    PIECE_NAME      reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    COLOR_NEUTRAL   reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    FAIRY_PROPERTIES reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    KINGSIDE_CASTLING reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    QUEENSIDE_CASTLING reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    BUT             reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    MOVE_NUMBER     reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    $end            reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    TWIN_ID         reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+    RIGHT_SQUARE_BRACKET reduce using rule 35 (PieceDecl -> COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME .)
+
+
+state 96
+
+    (19) Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW . SQUARE
+
+    SQUARE          shift and go to state 111
+
+
+state 97
+
+    (20) Command -> SHIFT SQUARE LONG_DOUBLE_ARROW . SQUARE
+
+    SQUARE          shift and go to state 112
+
+
+state 98
+
+    (38) SquareList -> SQUARE COMMA . SquareList
+    (37) SquareList -> . SQUARE
+    (38) SquareList -> . SQUARE COMMA SquareList
+    (39) SquareList -> . SQUARE SquareList
+
+    SQUARE          shift and go to state 77
+
+    SquareList                     shift and go to state 113
+
+state 99
+
+    (39) SquareList -> SQUARE SquareList .
+
+    ROTATE          reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    MIRROR          reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    SHIFT           reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    POLISH_TYPE     reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    IMITATOR        reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    DASH            reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    PLUS            reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    COLOR_NEUTRAL   reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    COLOR_WHITE     reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    COLOR_BLACK     reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    COMMENT         reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    BUT             reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    MOVE_NUMBER     reduce using rule 39 (SquareList -> SQUARE SquareList .)
+    RIGHT_SQUARE_BRACKET reduce using rule 39 (SquareList -> SQUARE SquareList .)
+
+
+state 100
+
+    (23) Command -> LongPieceDecl SQUARE LONG_ARROW . SQUARE
+
+    SQUARE          shift and go to state 114
+
+
+state 101
+
+    (24) Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW . LongPieceDecl SQUARE
+    (28) LongPieceDecl -> . ColorPrefix PIECE_NAME
+    (29) LongPieceDecl -> . ColorPrefix FAIRY_PROPERTIES PIECE_NAME
+    (30) ColorPrefix -> . COLOR_NEUTRAL
+    (31) ColorPrefix -> . COLOR_WHITE
+    (32) ColorPrefix -> . COLOR_BLACK
+
+    COLOR_NEUTRAL   shift and go to state 47
+    COLOR_WHITE     shift and go to state 48
+    COLOR_BLACK     shift and go to state 49
+
+    LongPieceDecl                  shift and go to state 115
+    ColorPrefix                    shift and go to state 46
+
+state 102
+
+    (25) Command -> DASH LongPieceDecl SQUARE .
+
+    ROTATE          reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    MIRROR          reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    SHIFT           reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    POLISH_TYPE     reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    IMITATOR        reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    DASH            reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    PLUS            reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    COLOR_WHITE     reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    COLOR_BLACK     reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    COMMENT         reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    BUT             reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+    MOVE_NUMBER     reduce using rule 25 (Command -> DASH LongPieceDecl SQUARE .)
+
+
+state 103
+
+    (26) Command -> PLUS LongPieceDecl SQUARE .
+
+    ROTATE          reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    MIRROR          reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    SHIFT           reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    POLISH_TYPE     reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    IMITATOR        reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    DASH            reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    PLUS            reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    COLOR_WHITE     reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    COLOR_BLACK     reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    COMMENT         reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    BUT             reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+    MOVE_NUMBER     reduce using rule 26 (Command -> PLUS LongPieceDecl SQUARE .)
+
+
+state 104
+
+    (29) LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .
+
+    SQUARE          reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    EQUALS          reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    LEFT_SQUARE_BRACKET reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    PLUS            reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    OTHER_CHECK_SIGN reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    THREAT          reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    ZUGZWANG        reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    ANNOTATION      reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    COMMENT         reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    PIECE_NAME      reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    COLOR_NEUTRAL   reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    FAIRY_PROPERTIES reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    KINGSIDE_CASTLING reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    QUEENSIDE_CASTLING reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    BUT             reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    MOVE_NUMBER     reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    $end            reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+    TWIN_ID         reduce using rule 29 (LongPieceDecl -> ColorPrefix FAIRY_PROPERTIES PIECE_NAME .)
+
+
+state 105
+
+    (60) Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl . SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (61) Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl . SQUARE RIGHT_SQUARE_BRACKET
+
+    SQUARE          shift and go to state 116
+
+
+state 106
+
+    (62) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE . ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (63) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE . ARROW SQUARE RIGHT_SQUARE_BRACKET
+
+    ARROW           shift and go to state 117
+
+
+state 107
+
+    (64) Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS . PieceDecl RIGHT_SQUARE_BRACKET
+    (65) Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS . ColorPrefix RIGHT_SQUARE_BRACKET
+    (33) PieceDecl -> . PIECE_NAME
+    (34) PieceDecl -> . COLOR_NEUTRAL PIECE_NAME
+    (35) PieceDecl -> . COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME
+    (36) PieceDecl -> . FAIRY_PROPERTIES PIECE_NAME
+    (30) ColorPrefix -> . COLOR_NEUTRAL
+    (31) ColorPrefix -> . COLOR_WHITE
+    (32) ColorPrefix -> . COLOR_BLACK
+
+    PIECE_NAME      shift and go to state 29
+    COLOR_NEUTRAL   shift and go to state 120
+    FAIRY_PROPERTIES shift and go to state 31
+    COLOR_WHITE     shift and go to state 48
+    COLOR_BLACK     shift and go to state 49
+
+    PieceDecl                      shift and go to state 118
+    ColorPrefix                    shift and go to state 119
+
+state 108
+
+    (66) Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE . RIGHT_SQUARE_BRACKET
+
+    RIGHT_SQUARE_BRACKET shift and go to state 121
+
+
+state 109
+
+    (67) Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .
+
+    EQUALS          reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    LEFT_SQUARE_BRACKET reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    PLUS            reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    OTHER_CHECK_SIGN reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    THREAT          reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    ZUGZWANG        reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    ANNOTATION      reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    COMMENT         reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    PIECE_NAME      reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    COLOR_NEUTRAL   reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    FAIRY_PROPERTIES reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    KINGSIDE_CASTLING reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    QUEENSIDE_CASTLING reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    SQUARE          reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    BUT             reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    MOVE_NUMBER     reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    $end            reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+    TWIN_ID         reduce using rule 67 (Ply -> Ply IMITATOR_MOVEMENT_OPENING_BRACKET SquareList RIGHT_SQUARE_BRACKET .)
+
+
+state 110
+
+    (75) Squares -> SQUARE ASTERISK SQUARE DASH . SQUARE
+
+    SQUARE          shift and go to state 122
+
+
+state 111
+
+    (19) Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .
+
+    ROTATE          reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    MIRROR          reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    SHIFT           reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    POLISH_TYPE     reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    IMITATOR        reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    DASH            reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    PLUS            reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    COLOR_WHITE     reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    COLOR_BLACK     reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    COMMENT         reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    BUT             reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+    MOVE_NUMBER     reduce using rule 19 (Command -> MIRROR SQUARE DOUBLE_POINTED_ARROW SQUARE .)
+
+
+state 112
+
+    (20) Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .
+
+    ROTATE          reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    MIRROR          reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    SHIFT           reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    POLISH_TYPE     reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    IMITATOR        reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    DASH            reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    PLUS            reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    COLOR_WHITE     reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    COLOR_BLACK     reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    COMMENT         reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    BUT             reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+    MOVE_NUMBER     reduce using rule 20 (Command -> SHIFT SQUARE LONG_DOUBLE_ARROW SQUARE .)
+
+
+state 113
+
+    (38) SquareList -> SQUARE COMMA SquareList .
+
+    ROTATE          reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    MIRROR          reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    SHIFT           reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    POLISH_TYPE     reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    IMITATOR        reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    DASH            reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    PLUS            reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    COLOR_NEUTRAL   reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    COLOR_WHITE     reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    COLOR_BLACK     reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    COMMENT         reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    BUT             reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    MOVE_NUMBER     reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+    RIGHT_SQUARE_BRACKET reduce using rule 38 (SquareList -> SQUARE COMMA SquareList .)
+
+
+state 114
+
+    (23) Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .
+
+    ROTATE          reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    MIRROR          reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    SHIFT           reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    POLISH_TYPE     reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    IMITATOR        reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    DASH            reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    PLUS            reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    COLOR_WHITE     reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    COLOR_BLACK     reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    COMMENT         reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    BUT             reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+    MOVE_NUMBER     reduce using rule 23 (Command -> LongPieceDecl SQUARE LONG_ARROW SQUARE .)
+
+
+state 115
+
+    (24) Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl . SQUARE
+
+    SQUARE          shift and go to state 123
+
+
+state 116
+
+    (60) Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE . EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (61) Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE . RIGHT_SQUARE_BRACKET
+
+    EQUALS          shift and go to state 124
+    RIGHT_SQUARE_BRACKET shift and go to state 125
+
+
+state 117
+
+    (62) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW . SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (63) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW . SQUARE RIGHT_SQUARE_BRACKET
+
+    SQUARE          shift and go to state 126
+
+
+state 118
+
+    (64) Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl . RIGHT_SQUARE_BRACKET
+
+    RIGHT_SQUARE_BRACKET shift and go to state 127
+
+
+state 119
+
+    (65) Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix . RIGHT_SQUARE_BRACKET
+
+    RIGHT_SQUARE_BRACKET shift and go to state 128
+
+
+state 120
+
+    (34) PieceDecl -> COLOR_NEUTRAL . PIECE_NAME
+    (35) PieceDecl -> COLOR_NEUTRAL . FAIRY_PROPERTIES PIECE_NAME
+    (30) ColorPrefix -> COLOR_NEUTRAL .
+
+    PIECE_NAME      shift and go to state 69
+    FAIRY_PROPERTIES shift and go to state 70
+    RIGHT_SQUARE_BRACKET reduce using rule 30 (ColorPrefix -> COLOR_NEUTRAL .)
+
+
+state 121
+
+    (66) Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .
+
+    EQUALS          reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    LEFT_SQUARE_BRACKET reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    PLUS            reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    OTHER_CHECK_SIGN reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    THREAT          reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    ZUGZWANG        reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    ANNOTATION      reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    COMMENT         reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    PIECE_NAME      reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    COLOR_NEUTRAL   reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    FAIRY_PROPERTIES reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    KINGSIDE_CASTLING reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    QUEENSIDE_CASTLING reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    SQUARE          reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    BUT             reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    MOVE_NUMBER     reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    $end            reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+    TWIN_ID         reduce using rule 66 (Ply -> Ply LEFT_SQUARE_BRACKET DASH SQUARE RIGHT_SQUARE_BRACKET .)
+
+
+state 122
+
+    (75) Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .
+
+    EN_PASSANT      reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    EQUALS          reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    LEFT_SQUARE_BRACKET reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    PLUS            reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    OTHER_CHECK_SIGN reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    THREAT          reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    ZUGZWANG        reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    ANNOTATION      reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    COMMENT         reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    PIECE_NAME      reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    FAIRY_PROPERTIES reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    KINGSIDE_CASTLING reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    QUEENSIDE_CASTLING reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    SQUARE          reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    BUT             reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    MOVE_NUMBER     reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    $end            reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+    TWIN_ID         reduce using rule 75 (Squares -> SQUARE ASTERISK SQUARE DASH SQUARE .)
+
+
+state 123
+
+    (24) Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .
+
+    ROTATE          reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    MIRROR          reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    SHIFT           reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    POLISH_TYPE     reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    IMITATOR        reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    DASH            reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    PLUS            reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    COLOR_NEUTRAL   reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    COLOR_WHITE     reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    COLOR_BLACK     reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    COMMENT         reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    BUT             reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+    MOVE_NUMBER     reduce using rule 24 (Command -> LongPieceDecl SQUARE DOUBLE_POINTED_ARROW LongPieceDecl SQUARE .)
+
+
+state 124
+
+    (60) Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS . PieceDecl RIGHT_SQUARE_BRACKET
+    (33) PieceDecl -> . PIECE_NAME
+    (34) PieceDecl -> . COLOR_NEUTRAL PIECE_NAME
+    (35) PieceDecl -> . COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME
+    (36) PieceDecl -> . FAIRY_PROPERTIES PIECE_NAME
+
+    PIECE_NAME      shift and go to state 29
+    COLOR_NEUTRAL   shift and go to state 30
+    FAIRY_PROPERTIES shift and go to state 31
+
+    PieceDecl                      shift and go to state 129
+
+state 125
+
+    (61) Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .
+
+    EQUALS          reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    LEFT_SQUARE_BRACKET reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    PLUS            reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    OTHER_CHECK_SIGN reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    THREAT          reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    ZUGZWANG        reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    ANNOTATION      reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    COMMENT         reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    PIECE_NAME      reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    COLOR_NEUTRAL   reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    FAIRY_PROPERTIES reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    KINGSIDE_CASTLING reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    QUEENSIDE_CASTLING reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    SQUARE          reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    BUT             reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    MOVE_NUMBER     reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    $end            reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+    TWIN_ID         reduce using rule 61 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE RIGHT_SQUARE_BRACKET .)
+
+
+state 126
+
+    (62) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE . EQUALS PieceDecl RIGHT_SQUARE_BRACKET
+    (63) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE . RIGHT_SQUARE_BRACKET
+
+    EQUALS          shift and go to state 130
+    RIGHT_SQUARE_BRACKET shift and go to state 131
+
+
+state 127
+
+    (64) Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .
+
+    EQUALS          reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    LEFT_SQUARE_BRACKET reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    PLUS            reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    OTHER_CHECK_SIGN reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    THREAT          reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    ZUGZWANG        reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    ANNOTATION      reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    COMMENT         reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    PIECE_NAME      reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    COLOR_NEUTRAL   reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    FAIRY_PROPERTIES reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    KINGSIDE_CASTLING reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    QUEENSIDE_CASTLING reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    SQUARE          reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    BUT             reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    MOVE_NUMBER     reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    $end            reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    TWIN_ID         reduce using rule 64 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+
+
+state 128
+
+    (65) Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .
+
+    EQUALS          reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    LEFT_SQUARE_BRACKET reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    PLUS            reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    OTHER_CHECK_SIGN reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    THREAT          reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    ZUGZWANG        reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    ANNOTATION      reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    COMMENT         reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    PIECE_NAME      reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    COLOR_NEUTRAL   reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    FAIRY_PROPERTIES reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    KINGSIDE_CASTLING reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    QUEENSIDE_CASTLING reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    SQUARE          reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    BUT             reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    MOVE_NUMBER     reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    $end            reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+    TWIN_ID         reduce using rule 65 (Ply -> Ply LEFT_SQUARE_BRACKET SQUARE EQUALS ColorPrefix RIGHT_SQUARE_BRACKET .)
+
+
+state 129
+
+    (60) Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl . RIGHT_SQUARE_BRACKET
+
+    RIGHT_SQUARE_BRACKET shift and go to state 132
+
+
+state 130
+
+    (62) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS . PieceDecl RIGHT_SQUARE_BRACKET
+    (33) PieceDecl -> . PIECE_NAME
+    (34) PieceDecl -> . COLOR_NEUTRAL PIECE_NAME
+    (35) PieceDecl -> . COLOR_NEUTRAL FAIRY_PROPERTIES PIECE_NAME
+    (36) PieceDecl -> . FAIRY_PROPERTIES PIECE_NAME
+
+    PIECE_NAME      shift and go to state 29
+    COLOR_NEUTRAL   shift and go to state 30
+    FAIRY_PROPERTIES shift and go to state 31
+
+    PieceDecl                      shift and go to state 133
+
+state 131
+
+    (63) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .
+
+    EQUALS          reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    LEFT_SQUARE_BRACKET reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    PLUS            reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    OTHER_CHECK_SIGN reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    THREAT          reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    ZUGZWANG        reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    ANNOTATION      reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    COMMENT         reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    PIECE_NAME      reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    COLOR_NEUTRAL   reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    FAIRY_PROPERTIES reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    KINGSIDE_CASTLING reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    QUEENSIDE_CASTLING reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    SQUARE          reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    BUT             reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    MOVE_NUMBER     reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    $end            reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+    TWIN_ID         reduce using rule 63 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE RIGHT_SQUARE_BRACKET .)
+
+
+state 132
+
+    (60) Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .
+
+    EQUALS          reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    LEFT_SQUARE_BRACKET reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    PLUS            reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    OTHER_CHECK_SIGN reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    THREAT          reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    ZUGZWANG        reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    ANNOTATION      reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    COMMENT         reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    PIECE_NAME      reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    COLOR_NEUTRAL   reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    FAIRY_PROPERTIES reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    KINGSIDE_CASTLING reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    QUEENSIDE_CASTLING reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    SQUARE          reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    BUT             reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    MOVE_NUMBER     reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    $end            reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    TWIN_ID         reduce using rule 60 (Ply -> Ply LEFT_SQUARE_BRACKET PLUS LongPieceDecl SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+
+
+state 133
+
+    (62) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl . RIGHT_SQUARE_BRACKET
+
+    RIGHT_SQUARE_BRACKET shift and go to state 134
+
+
+state 134
+
+    (62) Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .
+
+    EQUALS          reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    LEFT_SQUARE_BRACKET reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    IMITATOR_MOVEMENT_OPENING_BRACKET reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    PLUS            reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    OTHER_CHECK_SIGN reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    THREAT          reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    ZUGZWANG        reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    ANNOTATION      reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    COMMENT         reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    PIECE_NAME      reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    COLOR_NEUTRAL   reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    FAIRY_PROPERTIES reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    KINGSIDE_CASTLING reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    QUEENSIDE_CASTLING reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    SQUARE          reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    BUT             reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    MOVE_NUMBER     reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    $end            reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+    TWIN_ID         reduce using rule 62 (Ply -> Ply LEFT_SQUARE_BRACKET LongPieceDecl SQUARE ARROW SQUARE EQUALS PieceDecl RIGHT_SQUARE_BRACKET .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for COMMENT in state 8 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 22 resolved as shift
+WARNING: shift/reduce conflict for COLOR_NEUTRAL in state 60 resolved as shift
+WARNING: shift/reduce conflict for PIECE_NAME in state 60 resolved as shift
+WARNING: shift/reduce conflict for FAIRY_PROPERTIES in state 60 resolved as shift
+WARNING: shift/reduce conflict for PIECE_NAME in state 84 resolved as shift
+WARNING: shift/reduce conflict for FAIRY_PROPERTIES in state 84 resolved as shift
+WARNING: shift/reduce conflict for PIECE_NAME in state 87 resolved as shift
+WARNING: shift/reduce conflict for FAIRY_PROPERTIES in state 87 resolved as shift

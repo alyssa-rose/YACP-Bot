@@ -1,6 +1,6 @@
 
-import model
-from board import Square
+import olive_gui_master.model as model
+from olive_gui_master.board import Square
 from functools import reduce
 
 

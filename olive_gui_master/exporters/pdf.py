@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 
 # local
-import model
+import olive_gui_master.model as model
 
 # 3rd party
 import reportlab.rl_config
@@ -12,10 +12,6 @@ import reportlab.platypus
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.pagesizes import A4
 from PyQt5 import QtGui
-
-# local
-import model
-
 
 FONT_FAMILY = 'Roboto Condensed'
 FONT_SIZE = {

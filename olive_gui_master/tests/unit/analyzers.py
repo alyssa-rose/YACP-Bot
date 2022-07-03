@@ -14,7 +14,7 @@ predicateStorage = yacpdb.indexer.metadata.PredicateStorage('./')
 class TestTrajectories(unittest.TestCase):
 
     def prepare(self, e):
-        solution = p2w.parser.parser.parse(e["solution"], debug=0, lexer=p2w.lexer.lexer)
+        solution = p2w.parser.parser.parse(e["solution"], debug=0, lexer=olive_gui_master.p2w.lexer.lexer)
         b = model.Board()
         b.fromAlgebraic(e["algebraic"])
         b.stm = b.getStmByStipulation(e["stipulation"])

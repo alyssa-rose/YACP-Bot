@@ -13,20 +13,20 @@ import yaml
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 # local
-import board
-import chest
-import fancy
-import legacy.chess
-import legacy.popeye
-import model
-import options
-import pbm
-import yacpdb.indexer.cruncher
-import yacpdb.entry
-import exporters.pdf as pdf
-import exporters.xfen2img as xfen2img
-import exporters.latex as latex
-import exporters.html
+import olive_gui_master.board as board
+import olive_gui_master.chest as chest
+import olive_gui_master.fancy as fancy
+import olive_gui_master.legacy.chess as legacy.chess
+import olive_gui_master.legacy.popeye as legacy.popeye
+import olive_gui_master.model as model
+import olive_gui_master.options as options
+import olive_gui_master.pbm as pbm
+import olive_gui_master.yacpdb.indexer.cruncher as yacpdb.indexer.cruncher
+import olive_gui_master.yacpdb.entry as yacpdb.entry
+import olive_gui_master.exporters.pdf as pdf
+import olive_gui_master.exporters.xfen2img as xfen2img
+import olive_gui_master.exporters.latex as latex
+import olive_gui_master.exporters.html as exporters.html
 
 # indexer
 import yacpdb.indexer.metadata

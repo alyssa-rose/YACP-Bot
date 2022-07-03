@@ -1,6 +1,6 @@
 from .nodes import *
 import ply.yacc as yacc
-
+import olive_gui_master.model as model
 # lex & yacc transform the popeye output into a list of Nodes
 # the final rule - BuildTree - transforms this list into a tree
 

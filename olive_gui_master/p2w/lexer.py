@@ -1,5 +1,5 @@
 import ply.lex as lex
-import model
+import olive_gui_master.model as model
 
 # A string containing ignored characters
 t_ignore = " \t\r\n"

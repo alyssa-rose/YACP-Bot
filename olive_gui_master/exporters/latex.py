@@ -1,9 +1,9 @@
 ﻿# -*- coding: utf-8 -*-
 
 # local
-import model
-import board
-import gui
+import olive_gui_master.model as model
+import olive_gui_master.board as board
+import olive_gui_master.gui as gui
 import logging
 
 # 3rd party
