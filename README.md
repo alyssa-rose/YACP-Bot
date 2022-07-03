@@ -31,8 +31,12 @@ A repository for YACPBot, a Discord bot that posts problems from [YACPDB](https:
          2. Go to 'Widget'
          3. Copy the Server ID.
 8. Make sure the bot has the right permissions in the Discord Developer Portal (see `Required Permissions.txt`), and invite it to any server necessary.
-9. Run ` python YACPBot.py`
+   1. On the your bot's page on the developer site, go to OAuth2 URL Generator
+   3. Check 'bot' and 'applications.commands'
+   4. Check all the permissions required and stated in 'Required Permissions.txt' for the bot.
+9. Run `python YACPBot.py`
 10. Type /help in Discord to start things off.
+
 
 ## FAQ:
 **Q: Why aren't you using FEN to store the positions/PGN to store the solutions?**
