@@ -14,11 +14,25 @@ A repository for YACPBot, a Discord bot that posts problems from [YACPDB](https:
 5. Type /help in Discord to start things off.
 
 ## To run your own copy of this:
-1. Download the repository.
-2. Put your environment variables into the `.env` file.
-3. Make sure the bot has the right permissions in the Discord Developer Portal (see `Required Permissions.txt`), and invite it to any server necessary.
-4. Run YACPBot.py.
-5. Type /help in Discord to start things off.
+1. `git clone https://github.com/alyssa-rose/YACP-Bot.git`
+2. `pip install virtualenv`
+3. `virtualenv venv`
+4. `venv\Scripts\activate.bat`
+5. `cd YACP-Bot`
+6. `pip install -r requirements.txt`
+7. Put your environment variables into the `.env` file.
+   1. You will need a Discord token and a Guild (Server) ID.
+      1. to get a Discord token:
+         1. Go to https://discord.com/developers/applications
+         2. Select 'New Application' and enter the desired bot name.
+         3. On the left, click 'Bot' and copy your token. This is the Discord token.
+      2. To get the Guild ID:
+         1. Go to 'Server Settings' (top left of Discord in the dropdown menu on the name of the server)
+         2. Go to 'Widget'
+         3. Copy the Server ID.
+8. Make sure the bot has the right permissions in the Discord Developer Portal (see `Required Permissions.txt`), and invite it to any server necessary.
+9. Run ` python YACPBot.py`
+10. Type /help in Discord to start things off.
 
 ## FAQ:
 **Q: Why aren't you using FEN to store the positions/PGN to store the solutions?**

@@ -250,23 +250,10 @@ def cmp_strings_fuzzy(a, b, docut):
 			if len(a) < len(b):
 				a, b = b, a
 			b = b[:len(a)]
- 
-		#s = difflib.SequenceMatcher(None, a, b)
-
-		#print s.ratio(), soundex(a), soundex(b), soundex(a[::-1]), soundex(b[::-1])
-
-		#rt = s.ratio()
 		rt = stats.ratio(a, b)
 
 		if rt > 0.65:
 			return 'match', rt
-			
-		"""
-		if soundex(a) == soundex(b):
-			return 'match'
-		if soundex(a[::-1]) == soundex(b[::-1]):
-			return 'match'
-		"""
 		return 'diff', 0
 
 class diffstats:
@@ -276,11 +263,11 @@ class diffstats:
 		for postpre in ['post', 'pre']:
 			i = 0
 			for k, v in sorted(self.data[postpre].iteritems(), lambda x, y:  [-1, 1][y[1] - x[1] > 0]):
-				print "%s\t%d" % (k, v)
+				print("%s\t%d" % (k, v))
 				i = i+1
 				if(i > 10) and not full:
 					break
-			print "-------------------------"
+			print("-------------------------")
 	def load(self):
 		self.maxv = {}
 		for postpre in ['post', 'pre']:
@@ -303,14 +290,10 @@ class diffstats:
 				pretty = opcode_to_stats(opcode, a, b, postpre)
 				if not pretty is None:
 					if stats.data[postpre].has_key(pretty):
-#						print self.data[postpre][pretty]/(0.0+self.maxv[postpre]), pretty
-#						w = w + sshape(self.data[postpre][pretty]/(self.maxv[postpre]+0.0), 5)
-#						print self.data[postpre][pretty]/(self.maxv[postpre]+0.0)
 						tmp = sshape(self.data[postpre][pretty]/(self.maxv[postpre]+0.0), 5)
 						if(tmp > w):
 							w = tmp
 			correction = correction + opweight*w
-#			print w, opweight, correction, rt
 		return rt + correction
 
 def sshape(x, t):
@@ -423,15 +406,8 @@ stats = diffstats()
 stats.load()
 
 
-"""
-print stats.ratio('ANCIN', 'ANCHIN')
-#print stats.ratio('ABRAMENKO', 'RADMIENKO')
-sys.exit(0)
-"""
-
 canonical = []
 f = open('canonical.txt')
-#f = open('2.txt')
 for line in f:
 	n = name2(unicode(line.strip(), 'utf-8'))
 	if n.is_parsed:
@@ -439,7 +415,6 @@ for line in f:
 
 unsorted = []
 f = open('noncanonical.txt')
-#f = open('1.txt')
 cp, cd, nm, good = 0, 0, 0, 0
 for line in f:
 	n = name2(unicode(line.strip(), 'utf-8'))
@@ -448,49 +423,16 @@ for line in f:
 		if len(matches) > 1:
 			if matches[0][1] - matches[1][1] < 0.05:
 				cd = cd + 1
-				#print "CANT DECIDE:", matches[0][0], matches[1][0], matches[0][1], matches[1][1]
-				#print ' ----> ',
-				#for x, i in matches:
-				#	print x, i, ';',
 			else:
 				good = good + 1
-				print "%s\t%s\t%f" % (n.raw['utf'].encode('utf-8'), matches[0][0].raw['utf'].encode('utf-8'), matches[0][1])
-				#save_name_stats(n, matches[0][0], stats)
-				#print cp, cd, nm, good, int(100*good/(cp + cd + nm + good)), len(stats.data), "%\t",
-				#print n, "\t",
-				#print "\t", matches[0][0], "\t", matches[0][1]
-				#if not n.is_parsed:
-				#	print "!!!!!!!!!!!!"
-				#stats.dump(False)
+				print("%s\t%s\t%f" % (n.raw['utf'].encode('utf-8'), matches[0][0].raw['utf'].encode('utf-8'), matches[0][1]))
 				sys.stdout.flush()
 				continue
 		else:
 			good = good + 1
-			print "%s\t%s\t%f" % (n.raw['utf'].encode('utf-8'), matches[0][0].raw['utf'].encode('utf-8'), matches[0][1])
-			#save_name_stats(n, matches[0][0], stats)
-			#print cp, cd, nm, good, int(100*good/(cp + cd + nm + good)), len(stats.data), "%\t",
-			#print n, "\t",
-			#print "\t", matches[0][0], "\t", matches[0][1]
-			#if not n.is_parsed:
-			#	print "!!!!!!!!!!!!"
-			#stats.dump(False)
+			print("%s\t%s\t%f" % (n.raw['utf'].encode('utf-8'), matches[0][0].raw['utf'].encode('utf-8'), matches[0][1]))
 			sys.stdout.flush()
 			continue
 	else:
 		nm = nm + 1
-		#print n,
-		#print " ... no match"
-	#print n
 
-#stats.dump(True)
-
-"""f = open('authors2.txt')
-#f = open('test-authors.txt')
-for line in f:
-	n = name(unicode(line.strip(), 'utf-8'))
-	if n.is_parsed:
-		#print n.raw['utf'], n.raw['ascii']
-		print n.lastname, ' '.join(n.names)
-		#print line,
-"""
-#print cmp_strings_fuzzy('VUKCEVIC', 'VUKCHEVICH')
